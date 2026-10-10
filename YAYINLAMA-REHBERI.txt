@@ -1,0 +1,23 @@
+MELTA WEB SİTESİNİ ÜCRETSİZ YAYINLAMA (GitHub Pages)
+====================================================
+
+A) SİTEYİ YAYINLA
+1. github.com'a girin (hesabınızla).
+2. Sağ üstte "+" > "New repository".
+   - Repository name: melta
+   - "Public" seçili olsun (ücretsiz Pages için gerekli).
+   - "Create repository".
+3. Açılan sayfada "uploading an existing file" bağlantısına tıklayın.
+4. Bu klasördeki index.html dosyasını ve "gorseller" klasörünü
+   sürükleyip bırakın. Altta "Commit changes".
+5. Depoda Settings > Pages:
+   - Source: "Deploy from a branch"
+   - Branch: main  /  (root)  > Save
+6. 1-2 dakika sonra adresiniz hazır:
+   https://KULLANICI-ADINIZ.github.io/melta/
+   Bu adresi broşürün son sayfasındaki boşluğa yazın.
+
+B) TANITIM FORMU
+Form bağlı (Formspree kodu: xppqrdaz). Site yayına girince
+siteden kendinize bir deneme mesajı gönderin; ilk mesajda Formspree
+onay e-postası isteyebilir, onaylayın.

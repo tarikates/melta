@@ -1,0 +1,342 @@
+<!doctype html>
+<html lang="tr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>MELTA · Prefabrik Beton Yönetim Programı</title>
+<meta name="description" content="MELTA: prefabrik beton üreticileri için projeden statik hesaba, müşteriden cariye, üretim planlamadan sevkiyata uçtan uca yönetim programı.">
+<link rel="icon" href="gorseller/favicon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Barlow:wght@400;500;600;700&family=Barlow+Condensed:wght@600;700&display=swap" rel="stylesheet">
+<style>
+:root{--koyu:#1F2328;--koyu2:#2A3037;--acik:#F4F2EF;--beyaz:#FFFFFF;--kirmizi:#C4161C;--kirmizi-acik:#FF6B6F;--gri:#4A525B;--gri2:#C9CDD2;--cizgi:#DAD6CF}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:Barlow,Arial,sans-serif;background:var(--acik);color:var(--koyu);line-height:1.5;font-size:18px}
+img{max-width:100%;display:block}
+a{color:inherit}
+.kap{max-width:1200px;margin:0 auto;padding:0 20px}
+h1,h2{font-family:"Barlow Condensed",Arial,sans-serif;font-weight:700;line-height:1.05}
+.ust{position:sticky;top:env(safe-area-inset-top,0px);z-index:10;background:rgba(31,35,40,.96);backdrop-filter:blur(6px)}
+.ust .kap{display:flex;align-items:center;justify-content:space-between;height:68px}
+.marka{display:flex;align-items:center;gap:12px;text-decoration:none}
+.marka img.i{height:34px}.marka img.y{height:18px}
+.ust nav{display:flex;gap:24px;align-items:center}
+.ust nav a{color:var(--gri2);text-decoration:none;font-weight:500;font-size:16px}
+.ust nav a:hover{color:#fff}
+.dugme{display:inline-block;background:var(--kirmizi);color:#fff!important;font-weight:700;text-decoration:none;padding:12px 22px;border-radius:999px;border:0;font-size:17px;cursor:pointer;font-family:inherit}
+.dugme:hover{background:#A71217}
+.ust nav .dugme{padding:9px 18px;font-size:15px}
+.kahraman{background:var(--koyu);color:var(--acik);padding:80px 0 0;overflow:hidden;border-left:10px solid var(--kirmizi)}
+.kahraman .kap{display:grid;grid-template-columns:1fr 1.15fr;gap:48px;align-items:center}
+.kahraman h1{font-size:clamp(46px,6vw,80px)}
+.kahraman p.alt{font-size:21px;color:var(--gri2);margin:22px 0 30px;max-width:520px}
+.etiketler{display:flex;flex-wrap:wrap;gap:10px;margin-top:28px}
+.etiketler span{border:1.5px solid #5A626B;border-radius:999px;padding:5px 14px;font-size:15px;font-weight:600}
+.kahraman .gorsel{align-self:end}
+.kahraman .gorsel img{border-radius:16px 16px 0 0;box-shadow:0 -10px 50px rgba(0,0,0,.35)}
+.bolum{padding:88px 0}
+.ust-baslik{font-size:15px;font-weight:700;color:var(--kirmizi);letter-spacing:3px;text-transform:uppercase;margin-bottom:10px}
+.koyu .ust-baslik{color:var(--kirmizi-acik)}
+.bolum h2{font-size:clamp(36px,4.5vw,56px);margin-bottom:16px}
+.giris{font-size:20px;color:var(--gri);max-width:720px;margin-bottom:40px}
+.akis{display:grid;grid-template-columns:repeat(5,1fr);gap:16px;list-style:none}
+.akis li{background:var(--beyaz);border-radius:14px;padding:20px;border-top:5px solid var(--kirmizi)}
+.akis li b{display:block;font-family:"Barlow Condensed";font-size:34px;color:var(--kirmizi);line-height:1}
+.akis li h3{font-size:19px;margin:8px 0 4px}
+.akis li p{font-size:15px;color:var(--gri);line-height:1.4}
+.akis li.yakinda{border-top-color:#9AA1A9}.akis li.yakinda b{color:#9AA1A9}
+.rozet{display:inline-block;margin-top:8px;background:var(--koyu2);color:#fff;font-size:12px;font-weight:700;padding:2px 10px;border-radius:999px;letter-spacing:1px}
+.akis li.son{background:var(--koyu);color:var(--acik)}.akis li.son p{color:var(--gri2)}.akis li.son b{color:var(--kirmizi-acik)}
+.modul{display:grid;grid-template-columns:1fr 1.35fr;gap:56px;align-items:center;padding:56px 0;border-top:1px solid var(--cizgi)}
+.modul:first-of-type{border-top:0}
+.modul.ters .metin{order:2}
+.modul h3{font-family:"Barlow Condensed";font-size:40px;line-height:1.05;margin-bottom:14px}
+.modul p{color:var(--gri);font-size:18px;margin-bottom:16px}
+.modul ul{list-style:none;display:grid;gap:8px}
+.modul li{padding-left:26px;position:relative;font-weight:500}
+.modul li:before{content:"";position:absolute;left:0;top:11px;width:14px;height:3px;background:var(--kirmizi)}
+.gorseller{display:grid;gap:14px}
+.gorseller img{border-radius:12px;border:1px solid var(--cizgi);background:#fff;box-shadow:0 10px 30px rgba(31,35,40,.08)}
+.gorseller.iki{grid-template-columns:1fr 1fr}
+.koyu{background:var(--koyu);color:var(--acik)}
+.koyu .giris,.koyu .modul p{color:var(--gri2)}
+.koyu .modul{border-top-color:#3A4149}
+.koyu .gorseller img{border-color:#3A4149}
+.koyu .modul li:before{background:var(--kirmizi-acik)}
+.ozellikler{display:grid;grid-template-columns:1.2fr 1fr;gap:48px;align-items:center}
+.kartlar{display:grid;gap:14px}
+.kart{background:var(--beyaz);color:var(--koyu);border-radius:14px;padding:20px 22px;border-left:5px solid var(--kirmizi)}
+.kart h3{font-size:21px;margin-bottom:4px}.kart p{color:var(--gri);font-size:16px}
+.telefonlar{display:flex;gap:20px;justify-content:center}
+.telefonlar img{width:45%;max-width:260px;border-radius:28px;border:6px solid var(--koyu)}
+.form-bolum{background:var(--kirmizi);color:#FFF7F5}
+.form-bolum .kap{display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:start}
+.form-bolum h2{color:#fff}
+.form-bolum p{font-size:20px;color:#FFE3E1}
+form{background:#fff;color:var(--koyu);border-radius:18px;padding:28px;display:grid;gap:14px}
+label{font-size:14px;font-weight:600;color:var(--gri);display:grid;gap:6px}
+input,textarea{font:inherit;font-size:17px;padding:12px 14px;border:1.5px solid var(--cizgi);border-radius:10px;background:var(--acik);width:100%}
+input:focus,textarea:focus{outline:2px solid var(--kirmizi);border-color:transparent}
+textarea{min-height:110px;resize:vertical}
+.iki-sutun{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+#form-durum{font-weight:600;font-size:16px;min-height:22px}
+#form-durum.iyi{color:#1D7A3E}#form-durum.kotu{color:var(--kirmizi)}
+.gizli{position:absolute;left:-9999px}
+footer{background:var(--koyu);color:#8A9199;padding:36px 0;font-size:15px}
+footer .kap{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap;align-items:center}
+@media (max-width:900px){
+ .ust nav a:not(.dugme){display:none}
+ .kahraman{padding-top:48px;border-left-width:6px}
+ .kahraman .kap,.modul,.ozellikler,.form-bolum .kap{grid-template-columns:1fr;gap:28px}
+ .modul.ters .metin{order:0}
+ .akis{grid-template-columns:repeat(2,1fr)}
+ .bolum{padding:60px 0}
+ .modul{padding:40px 0}
+ .gorseller.iki,.iki-sutun{grid-template-columns:1fr}
+}
+
+select{font:inherit;font-size:17px;padding:12px 14px;border:1.5px solid var(--cizgi);border-radius:10px;background:var(--acik);width:100%;color:var(--koyu)}
+select:focus{outline:2px solid var(--kirmizi);border-color:transparent}
+.dugme:focus-visible{outline:3px solid #fff;outline-offset:2px}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+</style>
+</head>
+<body>
+<header class="ust">
+ <div class="kap">
+  <a class="marka" href="#"><img class="i" src="gorseller/melta-isaret-acik.png" alt=""><img class="y" src="gorseller/melta-yazi-acik.png" alt="MELTA"></a>
+  <nav>
+   <a href="#akis">Nasıl çalışır</a>
+   <a href="#moduller">Modüller</a>
+   <a href="#erisim">Erişim</a>
+   <a class="dugme" href="#tanitim">Tanıtım iste</a>
+  </nav>
+ </div>
+</header>
+
+<section class="kahraman">
+ <div class="kap">
+  <div style="padding-bottom:80px">
+   <h1>Prefabrik betonun tek programı</h1>
+   <p class="alt">Projeden statik hesaba, müşteriden cariye, üretimden sevkiyata: bütün iş tek ekranda.</p>
+   <a class="dugme" href="#tanitim">Tanıtım talep et</a>
+   <div class="etiketler"><span>Mühendislik</span><span>Üretim</span><span>Finans</span><span>Raporlama</span></div>
+  </div>
+  <div class="gorsel"><img src="gorseller/planlama.jpg" alt="MELTA üretim planlama ekranı"></div>
+ </div>
+</section>
+
+<section class="bolum" id="akis">
+ <div class="kap">
+  <p class="ust-baslik">Uçtan uca</p>
+  <h2>Projeden sevkiyata, kopmayan tek zincir</h2>
+  <p class="giris">Her adım bir sonrakini besler. Veri bir kez girilir; plan, stok, cari ve raporlar kendiliğinden güncellenir.</p>
+  <ol class="akis">
+   <li><b>01</b><h3>Proje tasarımı</h3><p>3D yapı modeli, akslar, kolon, kiriş, makas</p></li>
+   <li><b>02</b><h3>Statik proje</h3><p>Hesap raporu ve uygulama projesi</p></li>
+   <li class="yakinda"><b>03</b><h3>Fiyat teklifi</h3><p>Tasarlanan projeden metraj ve teklif</p><span class="rozet">YAKINDA</span></li>
+   <li><b>04</b><h3>Müşteri kaydı</h3><p>Anlaşmadan sonra müşteri bazlı sipariş</p></li>
+   <li><b>05</b><h3>Cari hesap</h3><p>Fatura, tahsilat, kasa, banka, çek</p></li>
+   <li><b>06</b><h3>Üretim planı</h3><p>Hangi eleman ne zaman biter</p></li>
+   <li><b>07</b><h3>Üretim ve stok</h3><p>Müşteri bazlı üretim, depo takibi</p></li>
+   <li><b>08</b><h3>Sevkiyat</h3><p>İrsaliye, şantiyeye teslim</p></li>
+   <li><b>09</b><h3>Personel</h3><p>Puantaj ve işçilik maliyeti</p></li>
+   <li class="son"><b>10</b><h3>Raporlar</h3><p>Günlük rapor, malzeme, iş özeti</p></li>
+  </ol>
+ </div>
+</section>
+
+<section class="bolum koyu" id="moduller">
+ <div class="kap">
+  <p class="ust-baslik">Modüller</p>
+  <h2>İşin her parçası için bir ekran</h2>
+
+  <div class="modul">
+   <div class="metin">
+    <p class="ust-baslik">Mühendislik</p>
+    <h3>Yapıyı çizin, hesabı program yapsın</h3>
+    <p>Aksları girin; kolon, oluk, makas ve aşıklar 3D modelde anında oluşur.</p>
+    <ul><li>Statik hesap raporu, tek tıkla PDF</li><li>Kar, çatı ve deprem yükleri</li><li>TS 500 · TBDY 2018 · TS 498</li><li>Uygulama projesine temel</li></ul>
+   </div>
+   <div class="gorseller"><img src="gorseller/muh-3d.jpg" alt="3D yapı modeli" loading="lazy"><img src="gorseller/hesap-raporu.jpg" alt="Statik hesap raporu" loading="lazy"></div>
+  </div>
+ </div>
+</section>
+
+<section class="bolum">
+ <div class="kap">
+  <div class="modul ters">
+   <div class="metin">
+    <p class="ust-baslik">Müşteri ve cari</p>
+    <h3>Her müşteri kendi dosyasıyla</h3>
+    <p>Anlaşma imzalandığı an müşteri kaydı ve cari hesabı açılır; siparişler, ödemeler ve bakiye tek yerde.</p>
+    <ul><li>Müşteri bazlı eleman siparişleri</li><li>Satış faturası, hakediş, tahsilat</li><li>Kasa, banka, çek ve senet</li><li>Tedarikçi borçları ve net bakiye</li></ul>
+   </div>
+   <div class="gorseller iki"><img src="gorseller/cari-kart.jpg" alt="Cari hesaplar" loading="lazy"><img src="gorseller/cari-hareket.jpg" alt="Cari hareketleri" loading="lazy"></div>
+  </div>
+
+  <div class="modul">
+   <div class="metin">
+    <p class="ust-baslik">Üretim planlama</p>
+    <h3>İş ne zaman biter, bir bakışta görün</h3>
+    <p>Müşteri bazlı siparişler günlere dağılır; kalan adet ve bitiş tarihi kendiliğinden hesaplanır.</p>
+    <ul><li>Excel gibi tablo: Ctrl + yön tuşları</li><li>Toplu seçim, silme, geri alma</li><li>Müşteri ve eleman filtreleri</li><li>Girilen üretim stoğa düşer</li></ul>
+   </div>
+   <div class="gorseller"><img src="gorseller/planlama.jpg" alt="Üretim planlama" loading="lazy"></div>
+  </div>
+
+  <div class="modul ters">
+   <div class="metin">
+    <p class="ust-baslik">Stok ve sevkiyat</p>
+    <h3>Sahadaki her eleman kayıtlı</h3>
+    <p>Üretilen eleman stoğa girer, araca yüklenince düşer; irsaliye otomatik hazırlanır.</p>
+    <ul><li>Müşteri bazlı stok ve kalan adet</li><li>Müşteri bazlı sevkiyat geçmişi</li><li>Yazdırılabilir sevk irsaliyesi</li><li>Depo malzemesinde eksik uyarısı</li></ul>
+   </div>
+   <div class="gorseller"><img src="gorseller/sevkiyat.jpg" alt="Sevkiyat" loading="lazy"><div class="gorseller iki"><img src="gorseller/stok.jpg" alt="Stok takibi" loading="lazy"><img src="gorseller/irsaliye.jpg" alt="Sevk irsaliyesi" loading="lazy"></div></div>
+  </div>
+ </div>
+</section>
+
+<section class="bolum koyu">
+ <div class="kap">
+  <div class="modul">
+   <div class="metin">
+    <p class="ust-baslik">Günlük üretim raporu</p>
+    <h3>Gün sonu raporu tek tıkla çıktı</h3>
+    <p>Gün içinde girilen üretim, firmanızın logosu ve antetiyle imzaya hazır rapora dönüşür.</p>
+    <ul><li>Sipariş yeri, eleman, ölçü, adet</li><li>Günlük ağırlık (kg) ve beton (m³)</li><li>Kişi başı tonaj, personel maliyeti</li><li>Kalite, üretim şefi, müdür imzası</li></ul>
+   </div>
+   <div class="gorseller"><img src="gorseller/gunluk-ust.jpg" alt="Günlük üretim raporu" loading="lazy"><img src="gorseller/gunluk-alt.jpg" alt="Günlük rapor özeti" loading="lazy"></div>
+  </div>
+ </div>
+</section>
+
+<section class="bolum">
+ <div class="kap">
+  <div class="modul ters">
+   <div class="metin">
+    <p class="ust-baslik">Personel ve puantaj</p>
+    <h3>Puantajı tutun, işçilik maliyeti hazır</h3>
+    <p>Her sabah kim geldi, kim izinli işaretlenir; günlük ve aylık işçilik maliyeti kendiliğinden çıkar.</p>
+    <ul><li>Geldi, izin, rapor, dış görev</li><li>Kıdem ve yıllık izin hesabı</li><li>Aylık bordro, sigorta, toplam maliyet</li><li>Üretim ve montaj ayrı ayrı</li></ul>
+   </div>
+   <div class="gorseller"><img src="gorseller/puantaj.jpg" alt="Günlük puantaj" loading="lazy"><img src="gorseller/bordro.jpg" alt="Aylık bordro" loading="lazy"></div>
+  </div>
+
+  <div class="modul">
+   <div class="metin">
+    <p class="ust-baslik">Malzeme raporu</p>
+    <h3>Ne kadar beton, demir, para?</h3>
+    <p>Üretilen bütün elemanların malzemesi günlük, aylık veya yıllık; ister toplam, ister müşteri bazlı.</p>
+    <ul><li>Eleman adedi ve ağırlığı</li><li>Beton m³, demir, halat, çelik hasır, plaka</li><li>Malzeme ve işçilik maliyeti (₺)</li></ul>
+   </div>
+   <div class="gorseller"><img src="gorseller/malzeme.jpg" alt="Malzeme raporu" loading="lazy"></div>
+  </div>
+
+  <div class="modul ters">
+   <div class="metin">
+    <p class="ust-baslik">İş özeti</p>
+    <h3>Bir yılın bütün işi, tek sayfada</h3>
+    <p>Yılı seçin: kaç iş alındı, kaç ton eleman üretildi, kaç m³ beton ve ne kadar demir gitti.</p>
+    <ul><li>Müşteri bazlı iş ve ilerleme</li><li>Sipariş, üretilen, kalan malzeme</li><li>Excel'e aktarma ve yazdırma</li><li>Anasayfada günlük durum paneli</li></ul>
+   </div>
+   <div class="gorseller"><img src="gorseller/is-ozeti.jpg" alt="İş özeti" loading="lazy"><img src="gorseller/anasayfa.jpg" alt="Anasayfa paneli" loading="lazy"></div>
+  </div>
+ </div>
+</section>
+
+<section class="bolum koyu" id="erisim">
+ <div class="kap ozellikler">
+  <div>
+   <p class="ust-baslik">Her yerden, güvenle</p>
+   <h2>Ofiste, sahada, cebinizde</h2>
+   <div class="kartlar" style="margin-top:24px">
+    <div class="kart"><h3>Telefon, tablet, bilgisayar</h3><p>Uygulama gibi kurulur; ayrı program yüklemeden tarayıcıdan açılır.</p></div>
+    <div class="kart"><h3>Göreve göre yetki</h3><p>Kalite kontrol, sevkiyat, muhasebe: herkes yalnız kendi ekranını görür.</p></div>
+    <div class="kart"><h3>Veriler firmanızda</h3><p>Kendi sunucunuzda çalışır; her gün otomatik yedek alınır.</p></div>
+   </div>
+  </div>
+  <div class="telefonlar"><img src="gorseller/tel1.jpg" alt="Telefonda MELTA" loading="lazy"><img src="gorseller/tel2.jpg" alt="Telefonda MELTA" loading="lazy"></div>
+ </div>
+</section>
+
+
+<section class="bolum form-bolum" id="tanitim">
+ <div class="kap">
+  <div>
+   <p class="ust-baslik" style="color:#FFD9D6">Tanıtım</p>
+   <h2>Fabrikanızı tek ekrandan yönetin.</h2>
+   <p>Programı kendi verinizle, yerinde gösterelim. Formu doldurun, size dönüş yapalım.</p>
+  </div>
+  <form id="tanitim-formu" action="https://formspree.io/f/xppqrdaz" method="POST" novalidate>
+   <div class="iki-sutun">
+    <label for="f-ad">Ad soyad<input id="f-ad" name="ad" required autocomplete="name"></label>
+    <label for="f-firma">Firma<input id="f-firma" name="firma" required autocomplete="organization"></label>
+   </div>
+   <div class="iki-sutun">
+    <label for="f-tel">Telefon<input id="f-tel" name="telefon" type="tel" autocomplete="tel" placeholder="05xx xxx xx xx"></label>
+    <label for="f-eposta">E-posta<input id="f-eposta" name="email" type="email" required autocomplete="email"></label>
+   </div>
+   <label for="f-il">İl<select id="f-il" name="il"><option value="">İl seçin</option></select></label>
+   <label for="f-not">Notunuz<textarea id="f-not" name="not" placeholder="Fabrikanız, ihtiyacınız, uygun zaman…"></textarea></label>
+   <input class="gizli" type="text" name="_gotcha" tabindex="-1" autocomplete="off">
+   <input type="hidden" name="_subject" value="MELTA tanıtım talebi">
+   <button class="dugme" type="submit">Tanıtım talep et</button>
+   <p id="form-durum" role="status"></p>
+  </form>
+ </div>
+</section>
+
+<footer>
+ <div class="kap">
+  <a class="marka" href="#"><img class="i" src="gorseller/melta-isaret-acik.png" alt=""><img class="y" src="gorseller/melta-yazi-acik.png" alt="MELTA"></a>
+  <span>Ekran görüntülerindeki firma, müşteri, personel adları ve tutarlar örnektir.</span>
+  <span>© <span id="yil">2026</span> MELTA</span>
+ </div>
+</footer>
+
+<script>
+(function () {
+  var iller = ["Adana","Adıyaman","Afyonkarahisar","Ağrı","Aksaray","Amasya","Ankara","Antalya","Ardahan","Artvin","Aydın","Balıkesir","Bartın","Batman","Bayburt","Bilecik","Bingöl","Bitlis","Bolu","Burdur","Bursa","Çanakkale","Çankırı","Çorum","Denizli","Diyarbakır","Düzce","Edirne","Elazığ","Erzincan","Erzurum","Eskişehir","Gaziantep","Giresun","Gümüşhane","Hakkari","Hatay","Iğdır","Isparta","İstanbul","İzmir","Kahramanmaraş","Karabük","Karaman","Kars","Kastamonu","Kayseri","Kilis","Kırıkkale","Kırklareli","Kırşehir","Kocaeli","Konya","Kütahya","Malatya","Manisa","Mardin","Mersin","Muğla","Muş","Nevşehir","Niğde","Ordu","Osmaniye","Rize","Sakarya","Samsun","Şanlıurfa","Siirt","Sinop","Şırnak","Sivas","Tekirdağ","Tokat","Trabzon","Tunceli","Uşak","Van","Yalova","Yozgat","Zonguldak"];
+  var sec = document.getElementById("f-il");
+  iller.forEach(function (il) { var o = document.createElement("option"); o.textContent = il; sec.appendChild(o); });
+  document.getElementById("yil").textContent = new Date().getFullYear();
+
+  var form = document.getElementById("tanitim-formu");
+  var durum = document.getElementById("form-durum");
+  var dugme = form.querySelector("button");
+  form.addEventListener("submit", function (e) {
+    e.preventDefault();
+    var eksik = Array.prototype.filter.call(form.querySelectorAll("[required]"), function (el) { return !el.value.trim(); });
+    if (eksik.length) {
+      durum.className = "kotu";
+      durum.textContent = "Lütfen ad soyad, firma ve e-posta alanlarını doldurun.";
+      eksik[0].focus();
+      return;
+    }
+    if (form.action.indexOf("FORM_KODU") !== -1) {
+      durum.className = "kotu";
+      durum.textContent = "Form henüz bağlanmadı.";
+      return;
+    }
+    dugme.disabled = true; dugme.textContent = "Gönderiliyor…";
+    fetch(form.action, { method: "POST", body: new FormData(form), headers: { Accept: "application/json" } })
+      .then(function (r) {
+        if (!r.ok) throw new Error();
+        form.reset();
+        durum.className = "iyi";
+        durum.textContent = "Teşekkürler! Talebiniz bize ulaştı, en kısa sürede dönüş yapacağız.";
+      })
+      .catch(function () {
+        durum.className = "kotu";
+        durum.textContent = "Gönderilemedi. İnternet bağlantınızı kontrol edip tekrar deneyin.";
+      })
+      .finally(function () { dugme.disabled = false; dugme.textContent = "Tanıtım talep et"; });
+  });
+})();
+</script>
+
+</body>
+</html>
