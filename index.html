@@ -101,6 +101,29 @@ select{font:inherit;font-size:17px;padding:12px 14px;border:1.5px solid var(--ci
 select:focus{outline:2px solid var(--kirmizi);border-color:transparent}
 .dugme:focus-visible{outline:3px solid #fff;outline-offset:2px}
 @media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+.paketler{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;align-items:stretch}
+.paket{background:var(--beyaz);border:1px solid var(--cizgi);border-radius:18px;padding:30px 26px;display:flex;flex-direction:column;gap:18px;position:relative}
+.paket.one{background:var(--koyu);color:var(--acik);border-color:var(--koyu);box-shadow:0 24px 50px rgba(31,35,40,.25)}
+.paket .rozet2{position:absolute;top:-14px;left:26px;background:var(--kirmizi);color:#fff;font-size:13px;font-weight:700;letter-spacing:2px;padding:5px 12px;border-radius:999px}
+.paket h3{font-family:"Barlow Condensed",Arial,sans-serif;font-size:34px;line-height:1}
+.paket .kisi2{display:flex;align-items:baseline;gap:8px}
+.paket .kisi2 b{font-family:"Barlow Condensed",Arial,sans-serif;font-size:56px;line-height:1;color:var(--kirmizi)}
+.paket.one .kisi2 b{color:var(--kirmizi-acik)}
+.paket .kisi2 span{font-weight:600;color:var(--gri)}
+.paket.one .kisi2 span,.paket.one .aciklama2,.paket.one .kdv{color:var(--gri2)}
+.paket .aciklama2{color:var(--gri);font-size:16px;min-height:44px}
+.paket .tutar{font-family:"Barlow Condensed",Arial,sans-serif;font-size:46px;font-weight:700;line-height:1;font-variant-numeric:tabular-nums}
+.paket .kdv{font-size:14px;color:var(--gri);margin-top:6px}
+.paket .fiyat-sor{font-size:20px;font-weight:700;border-top:1px solid var(--cizgi);padding-top:16px}
+.paket.one .fiyat-sor{border-top-color:#3A4149}
+.paket .dugme{margin-top:auto;text-align:center}
+.paket:not(.one) .dugme{background:var(--koyu)}
+.paket:not(.one) .dugme:hover{background:#000}
+.dahil-liste{margin-top:32px;display:flex;flex-wrap:wrap;gap:10px;align-items:center}
+.dahil-liste b{font-size:14px;letter-spacing:2px;color:var(--kirmizi);margin-right:6px}
+.dahil-liste span{background:var(--beyaz);border:1px solid var(--cizgi);border-radius:999px;padding:6px 14px;font-size:15px;font-weight:500}
+.fiyat-not{margin-top:18px;font-size:14px;color:var(--gri)}
+@media (max-width:900px){.paketler{grid-template-columns:1fr;gap:26px}.paket .aciklama2{min-height:0}}
 </style>
 </head>
 <body>
@@ -111,6 +134,7 @@ select:focus{outline:2px solid var(--kirmizi);border-color:transparent}
    <a href="#akis">Nasıl çalışır</a>
    <a href="#moduller">Modüller</a>
    <a href="#erisim">Erişim</a>
+   <a href="#paketler">Paketler</a>
    <a class="dugme" href="#tanitim">Tanıtım iste</a>
   </nav>
  </div>
@@ -263,6 +287,40 @@ select:focus{outline:2px solid var(--kirmizi);border-color:transparent}
 </section>
 
 
+<section class="bolum" id="paketler">
+ <div class="kap">
+  <p class="ust-baslik">Yıllık lisans paketleri</p>
+  <h2>Firmanıza uygun paketi seçin</h2>
+  <p class="giris">Bütün paketlerde programın tüm bölümleri var. Paketler yalnızca kullanıcı sayısında ayrılır; ekibiniz büyüdüğünde üst pakete geçebilirsiniz.</p>
+  <div class="paketler">
+   <div class="paket">
+    <h3>Başlangıç</h3>
+    <div class="kisi2"><b>2</b><span>kullanıcı</span></div>
+    <p class="aciklama2">Yönetici ve bir kullanıcı</p>
+    <p class="fiyat-sor">Fiyat için bize ulaşın</p>
+    <a class="dugme" href="#tanitim" data-paket="Başlangıç (2 kullanıcı)">Bu paketle ilgileniyorum</a>
+   </div>
+   <div class="paket one">
+    <span class="rozet2">ÖNERİLEN</span>
+    <h3>Profesyonel</h3>
+    <div class="kisi2"><b>10</b><span>kullanıcı</span></div>
+    <p class="aciklama2">Üretim, sevkiyat ve muhasebe ekibi</p>
+    <p class="fiyat-sor">Fiyat için bize ulaşın</p>
+    <a class="dugme" href="#tanitim" data-paket="Profesyonel (10 kullanıcı)">Bu paketle ilgileniyorum</a>
+   </div>
+   <div class="paket">
+    <h3>Kurumsal</h3>
+    <div class="kisi2"><b>30</b><span>kullanıcı</span></div>
+    <p class="aciklama2">Birden çok ekip ve vardiya</p>
+    <p class="fiyat-sor">Fiyat için bize ulaşın</p>
+    <a class="dugme" href="#tanitim" data-paket="Kurumsal (30 kullanıcı)">Bu paketle ilgileniyorum</a>
+   </div>
+  </div>
+  <div class="dahil-liste"><b>TÜM PAKETLERDE</b><span>Mühendislik ve 3D model</span><span>Statik hesap raporu</span><span>Müşteri ve cari</span><span>Kasa ve banka</span><span>Üretim planlama</span><span>Stok ve sevkiyat</span><span>Günlük üretim raporu</span><span>Puantaj ve işçilik maliyeti</span><span>Malzeme raporu</span><span>İş özeti</span><span>Telefon ve tablet</span></div>
+  <p class="fiyat-not">Paketler yıllık lisans olarak sunulur. İlgilendiğiniz paketi seçip formu doldurun; fiyat ve detaylarla size dönüş yapalım.</p>
+ </div>
+</section>
+
 <section class="bolum form-bolum" id="tanitim">
  <div class="kap">
   <div>
@@ -279,7 +337,10 @@ select:focus{outline:2px solid var(--kirmizi);border-color:transparent}
     <label for="f-tel">Telefon<input id="f-tel" name="telefon" type="tel" autocomplete="tel" placeholder="05xx xxx xx xx"></label>
     <label for="f-eposta">E-posta<input id="f-eposta" name="email" type="email" required autocomplete="email"></label>
    </div>
-   <label for="f-il">İl<select id="f-il" name="il"><option value="">İl seçin</option></select></label>
+   <div class="iki-sutun">
+    <label for="f-il">İl<select id="f-il" name="il"><option value="">İl seçin</option></select></label>
+    <label for="f-paket">İlgilendiğiniz paket<select id="f-paket" name="paket"><option value="">Henüz karar vermedim</option><option>Başlangıç (2 kullanıcı)</option><option>Profesyonel (10 kullanıcı)</option><option>Kurumsal (30 kullanıcı)</option></select></label>
+   </div>
    <label for="f-not">Notunuz<textarea id="f-not" name="not" placeholder="Fabrikanız, ihtiyacınız, uygun zaman…"></textarea></label>
    <input class="gizli" type="text" name="_gotcha" tabindex="-1" autocomplete="off">
    <input type="hidden" name="_subject" value="MELTA tanıtım talebi">
@@ -304,6 +365,9 @@ select:focus{outline:2px solid var(--kirmizi);border-color:transparent}
   iller.forEach(function (il) { var o = document.createElement("option"); o.textContent = il; sec.appendChild(o); });
   document.getElementById("yil").textContent = new Date().getFullYear();
 
+  document.querySelectorAll("[data-paket]").forEach(function (a) {
+    a.addEventListener("click", function () { document.getElementById("f-paket").value = a.getAttribute("data-paket"); });
+  });
   var form = document.getElementById("tanitim-formu");
   var durum = document.getElementById("form-durum");
   var dugme = form.querySelector("button");
