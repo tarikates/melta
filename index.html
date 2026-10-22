@@ -6,9 +6,7 @@
 <title>MELTA · Prefabrik Beton Yönetim Programı</title>
 <meta name="description" content="MELTA: prefabrik beton üreticileri için projeden statik hesaba, müşteriden cariye, üretim planlamadan sevkiyata uçtan uca yönetim programı.">
 <link rel="icon" href="favicon.png">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Barlow:wght@400;500;600;700&family=Barlow+Condensed:wght@600;700&display=swap" rel="stylesheet">
+<link href="fonts.css" rel="stylesheet">
 <style>
 :root{--koyu:#1F2328;--koyu2:#2A3037;--acik:#F4F2EF;--beyaz:#FFFFFF;--kirmizi:#C4161C;--kirmizi-acik:#FF6B6F;--gri:#4A525B;--gri2:#C9CDD2;--cizgi:#DAD6CF}
 *{box-sizing:border-box;margin:0;padding:0}
@@ -81,6 +79,9 @@ input,textarea{font:inherit;font-size:17px;padding:12px 14px;border:1.5px solid 
 input:focus,textarea:focus{outline:2px solid var(--kirmizi);border-color:transparent}
 textarea{min-height:110px;resize:vertical}
 .iki-sutun{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.riza{display:flex;flex-direction:row;gap:10px;align-items:flex-start;font-size:14px;font-weight:500;color:var(--gri);line-height:1.45}.riza input{width:18px;height:18px;margin-top:2px;flex:none}
+.kvkk-not,.form-bolum form p.kvkk-not{font-size:14px;color:var(--gri);line-height:1.45}.kvkk-not a{color:var(--kirmizi);font-weight:600}
+footer nav{display:flex;gap:18px;flex-wrap:wrap}footer nav a{color:#C9CDD2;text-decoration:none}footer nav a:hover{color:#fff}
 #form-durum{font-weight:600;font-size:16px;min-height:22px}
 #form-durum.iyi{color:#1D7A3E}#form-durum.kotu{color:var(--kirmizi)}
 .gizli{position:absolute;left:-9999px}
@@ -344,6 +345,8 @@ select:focus{outline:2px solid var(--kirmizi);border-color:transparent}
    <label for="f-not">Notunuz<textarea id="f-not" name="not" placeholder="Fabrikanız, ihtiyacınız, uygun zaman…"></textarea></label>
    <input class="gizli" type="text" name="_gotcha" tabindex="-1" autocomplete="off">
    <input type="hidden" name="_subject" value="MELTA tanıtım talebi">
+   <p class="kvkk-not">Bilgileriniz yalnızca talebinize dönüş yapmak için kullanılır. Ayrıntılar: <a href="kvkk.html">KVKK Aydınlatma Metni</a>.</p>
+   <label class="riza" for="f-riza"><input id="f-riza" type="checkbox" name="acik_riza" value="Evet"><span>Form bilgilerimin yurt dışında bulunan form hizmeti (Formspree, ABD) aracılığıyla MELTA'ya iletilmesine açık rıza veriyorum.</span></label>
    <button class="dugme" type="submit">Tanıtım talep et</button>
    <p id="form-durum" role="status"></p>
   </form>
@@ -354,6 +357,7 @@ select:focus{outline:2px solid var(--kirmizi);border-color:transparent}
  <div class="kap">
   <a class="marka" href="#"><img class="i" src="melta-isaret-acik.png" alt=""><img class="y" src="melta-yazi-acik.png" alt="MELTA"></a>
   <span>Ekran görüntülerindeki firma, müşteri, personel adları ve tutarlar örnektir.</span>
+  <nav><a href="kvkk.html">KVKK Aydınlatma Metni</a><a href="oyunlar/">MELTA Oyunları</a><a href="oyunlar/gizlilik.html">Oyun Gizlilik Politikası</a></nav>
   <span>© <span id="yil">2026</span> MELTA</span>
  </div>
 </footer>
@@ -378,6 +382,13 @@ select:focus{outline:2px solid var(--kirmizi);border-color:transparent}
       durum.className = "kotu";
       durum.textContent = "Lütfen ad soyad, firma ve e-posta alanlarını doldurun.";
       eksik[0].focus();
+      return;
+    }
+    var riza = document.getElementById("f-riza");
+    if (!riza.checked) {
+      durum.className = "kotu";
+      durum.textContent = "Göndermek için açık rıza kutusunu işaretleyin.";
+      riza.focus();
       return;
     }
     if (form.action.indexOf("FORM_KODU") !== -1) {
