@@ -1,0 +1,96 @@
+<!doctype html>
+<html lang="tr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Şeker Diyarı · MELTA Oyunları</title>
+<link rel="stylesheet" href="fonts.css">
+<meta name="description" content="Şeker Diyarı: rengârenk şekerleri eşleştir, patlat, bölüm bölüm şeker diyarını keşfet. Yakında Google Play ve App Store'da.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23E84B6A'/%3E%3Ccircle cx='32' cy='32' r='14' fill='%23fff'/%3E%3C/svg%3E">
+<link rel="stylesheet" href="stil.css">
+<style>
+.geri{font-weight:700;font-size:15px;color:var(--soluk);text-decoration:none;display:inline-block;margin-bottom:14px}
+.kahraman{background:linear-gradient(180deg,#FBD3E6 0%,#F6EEFC 100%);overflow:hidden}
+.kahraman .kap{display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:center;padding-block:40px 64px}
+.kahraman h1{font-size:clamp(52px,7.5vw,88px);font-weight:800;color:#B0306A;letter-spacing:-1px;margin-top:12px}
+.kahraman h1 span{display:block;color:var(--kirmizi)}
+.kahraman p.alt{font-size:21px;color:#5A3D52;margin:18px 0 28px;max-width:460px}
+.kahraman svg{width:100%;height:auto;border-radius:24px;box-shadow:0 20px 40px rgba(46,42,36,.15)}
+.yolda{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.adim{background:#fff;border:2px solid var(--cizgi);border-radius:20px;padding:22px}
+.adim b{display:block;font-family:var(--baslik);font-size:22px;margin-bottom:4px}
+.adim p{color:var(--soluk);font-size:16px}
+.adim.tamam{border-color:#F3C995;background:#FFF6EA}
+@media (max-width:860px){.kahraman .kap{grid-template-columns:1fr}.yolda{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+
+<header class="ust">
+ <div class="kap">
+  <a class="logo" href="index.html">
+   <svg viewBox="0 0 64 64" aria-hidden="true"><rect width="64" height="64" rx="16" fill="#C2462E"/><path d="M16 46V20l16 14 16-14v26" fill="none" stroke="#fff" stroke-width="7" stroke-linejoin="round"/></svg>
+   MELTA <small>Oyunları</small>
+  </a>
+  <nav>
+   <a href="index.html#oyunlar">Tüm oyunlar</a>
+   <a class="dugme" href="#haber">Haber ver</a>
+  </nav>
+ </div>
+</header>
+
+<section class="kahraman">
+ <div class="kap">
+  <div>
+   <a class="geri" href="index.html#oyunlar">← Tüm oyunlar</a><br>
+   <span class="durum-etiket yakinda">Yakında · Bulmaca oyunu</span>
+   <h1>Şeker <span>Diyarı</span></h1>
+   <p class="alt">Rengârenk şekerleri yan yana getir, patlat, bölüm bölüm şeker diyarını keşfet. Ayrıntılar çok yakında burada.</p>
+   <a class="dugme" href="#haber">Çıkınca haber ver</a>
+  </div>
+  <svg viewBox="0 0 320 200" role="img" aria-label="Rengârenk şekerlerle dolu bir oyun tahtası, lolipop ve sargılı şeker"><defs><linearGradient id="sk" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#FBD3E6"/><stop offset="1" stop-color="#E9D7FB"/></linearGradient></defs><rect width="320" height="200" fill="url(#sk)"/><g fill="#fff" opacity=".7"><circle cx="40" cy="30" r="6"/><circle cx="290" cy="40" r="4"/><circle cx="270" cy="170" r="5"/></g><rect x="70" y="20" width="180" height="160" rx="18" fill="#fff" opacity=".85"/><g transform="translate(86 34)"><circle cx="18" cy="18" r="15" fill="#E84B6A"/><circle cx="58" cy="18" r="15" fill="#F6C445"/><circle cx="98" cy="18" r="15" fill="#5FA347"/><circle cx="138" cy="18" r="15" fill="#E84B6A"/><rect x="3" y="45" width="30" height="30" rx="8" fill="#7C5CD6"/><circle cx="58" cy="60" r="15" fill="#E84B6A"/><rect x="83" y="45" width="30" height="30" rx="8" fill="#2F9BD6"/><circle cx="138" cy="60" r="15" fill="#F6C445"/><circle cx="18" cy="102" r="15" fill="#5FA347"/><rect x="43" y="87" width="30" height="30" rx="8" fill="#7C5CD6"/><circle cx="98" cy="102" r="15" fill="#E84B6A"/><rect x="123" y="87" width="30" height="30" rx="8" fill="#2F9BD6"/><g fill="#fff" opacity=".55"><circle cx="13" cy="12" r="4"/><circle cx="53" cy="12" r="4"/><circle cx="93" cy="12" r="4"/><circle cx="133" cy="12" r="4"/><circle cx="53" cy="54" r="4"/><circle cx="133" cy="54" r="4"/><circle cx="13" cy="96" r="4"/><circle cx="93" cy="96" r="4"/></g></g><g transform="translate(262 92) rotate(20)"><rect x="-3" y="10" width="6" height="56" rx="3" fill="#fff"/><circle r="22" fill="#F28AB2"/><path d="M-14 0a14 14 0 1 0 28 0a9 9 0 1 0 -18 0a4 4 0 1 0 8 0" fill="none" stroke="#fff" stroke-width="4"/></g><g transform="translate(40 140) rotate(-15)"><path d="M-26-10l10 10-10 10zM26-10l-10 10 10 10z" fill="#F6C445"/><ellipse rx="18" ry="12" fill="#E84B6A"/><path d="M-8-10q8 10 0 20M2-11q8 11 0 22" stroke="#fff" stroke-width="3" fill="none"/></g></svg>
+ </div>
+</section>
+
+<section class="bolum haber" id="haber">
+ <div class="kap">
+  <div>
+   <p class="ust-yazi">Yakında</p>
+   <h2>Çıkınca ilk sen öğren</h2>
+   <p class="giris" style="margin-bottom:0">E-postanı bırak, Şeker Diyarı yayına girdiği gün haber verelim.</p>
+  </div>
+  <form id="haber-formu" action="https://formspree.io/f/xppqrdaz" method="POST" novalidate>
+   <label class="alan" for="f-eposta">E-posta adresin<input id="f-eposta" name="email" type="email" required autocomplete="email" placeholder="ornek@mail.com"></label>
+   <div>
+    <p class="grup-baslik">Telefonun</p>
+    <div class="secim">
+     <label><input type="radio" name="telefon" value="Android" checked> Android</label>
+     <label><input type="radio" name="telefon" value="iPhone"> iPhone</label>
+    </div>
+   </div>
+   <input type="hidden" name="oyunlar" value="Şeker Diyarı">
+   <input class="gizli" type="text" name="_gotcha" tabindex="-1" autocomplete="off">
+   <input type="hidden" name="_subject" value="Şeker Diyarı · çıkınca haber ver">
+   <label class="riza"><input id="f-riza" type="checkbox" name="acik_riza" value="Evet"> <span>E-posta adresimin oyunların çıkış haberini göndermek için işlenmesini ve yurt dışındaki form hizmeti (Formspree, ABD) aracılığıyla iletilmesini kabul ediyorum. <a href="gizlilik.html" target="_blank">Gizlilik Politikası</a> · 16 yaşından küçüksen formu ebeveynin doldursun.</span></label>
+   <button class="dugme" type="submit">Haber ver</button>
+   <p id="durum" role="status"></p>
+   <p class="form-not">E-postanı yalnızca oyunun çıkış haberi için kullanırız. Ayrıntılar: <a href="gizlilik.html">Gizlilik Politikası</a>.</p>
+  </form>
+ </div>
+</section>
+
+<footer class="alt">
+ <div class="kap">
+  <span>© <span id="yil">2026</span> MELTA Oyunları · Şeker Diyarı</span>
+  <nav>
+   <a href="index.html">Tüm oyunlar</a>
+   <a href="gizlilik.html">Gizlilik / Privacy</a>
+   <a href="kvkk.html">KVKK</a>
+   <span>Destek: <a href="mailto:satis@meltamuhendislik.com">satis@meltamuhendislik.com</a></span>
+  </nav>
+ </div>
+</footer>
+
+<script src="form.js"></script>
+</body>
+</html>

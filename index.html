@@ -3,415 +3,200 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>MELTA · Prefabrik Beton Yönetim Programı</title>
-<meta name="description" content="MELTA: prefabrik beton üreticileri için projeden statik hesaba, müşteriden cariye, üretim planlamadan sevkiyata uçtan uca yönetim programı.">
-<link rel="icon" href="favicon.png">
-<link href="fonts.css" rel="stylesheet">
+<title>MELTA Oyunları</title>
+<link rel="stylesheet" href="fonts.css">
+<meta name="description" content="MELTA: tatlı, sakin ve uzun soluklu mobil oyunlar. Dedemin Çiftliği, Süper Market Patronu, Depo Düellosu ve Şeker Diyarı yakında Google Play ve App Store'da.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='16' fill='%23C2462E'/%3E%3Cpath d='M16 46V20l16 14 16-14v26' fill='none' stroke='%23fff' stroke-width='7' stroke-linejoin='round'/%3E%3C/svg%3E">
+<link rel="stylesheet" href="stil.css">
 <style>
-:root{--koyu:#1F2328;--koyu2:#2A3037;--acik:#F4F2EF;--beyaz:#FFFFFF;--kirmizi:#C4161C;--kirmizi-acik:#FF6B6F;--gri:#4A525B;--gri2:#C9CDD2;--cizgi:#DAD6CF}
-*{box-sizing:border-box;margin:0;padding:0}
-html{scroll-behavior:smooth}
-body{font-family:Barlow,Arial,sans-serif;background:var(--acik);color:var(--koyu);line-height:1.5;font-size:18px}
-img{max-width:100%;display:block}
-a{color:inherit}
-.kap{max-width:1200px;margin:0 auto;padding:0 20px}
-h1,h2{font-family:"Barlow Condensed",Arial,sans-serif;font-weight:700;line-height:1.05}
-.ust{position:sticky;top:env(safe-area-inset-top,0px);z-index:10;background:rgba(31,35,40,.96);backdrop-filter:blur(6px)}
-.ust .kap{display:flex;align-items:center;justify-content:space-between;height:68px}
-.marka{display:flex;align-items:center;gap:12px;text-decoration:none}
-.marka img.i{height:34px}.marka img.y{height:18px}
-.ust nav{display:flex;gap:24px;align-items:center}
-.ust nav a{color:var(--gri2);text-decoration:none;font-weight:500;font-size:16px}
-.ust nav a:hover{color:#fff}
-.dugme{display:inline-block;background:var(--kirmizi);color:#fff!important;font-weight:700;text-decoration:none;padding:12px 22px;border-radius:999px;border:0;font-size:17px;cursor:pointer;font-family:inherit}
-.dugme:hover{background:#A71217}
-.ust nav .dugme{padding:9px 18px;font-size:15px}
-.kahraman{background:var(--koyu);color:var(--acik);padding:80px 0 0;overflow:hidden;border-left:10px solid var(--kirmizi)}
-.kahraman .kap{display:grid;grid-template-columns:1fr 1.15fr;gap:48px;align-items:center}
-.kahraman h1{font-size:clamp(46px,6vw,80px)}
-.kahraman p.alt{font-size:21px;color:var(--gri2);margin:22px 0 30px;max-width:520px}
-.etiketler{display:flex;flex-wrap:wrap;gap:10px;margin-top:28px}
-.etiketler span{border:1.5px solid #5A626B;border-radius:999px;padding:5px 14px;font-size:15px;font-weight:600}
-.kahraman .gorsel{align-self:end}
-.kahraman .gorsel img{border-radius:16px 16px 0 0;box-shadow:0 -10px 50px rgba(0,0,0,.35)}
-.bolum{padding:88px 0}
-.ust-baslik{font-size:15px;font-weight:700;color:var(--kirmizi);letter-spacing:3px;text-transform:uppercase;margin-bottom:10px}
-.koyu .ust-baslik{color:var(--kirmizi-acik)}
-.bolum h2{font-size:clamp(36px,4.5vw,56px);margin-bottom:16px}
-.giris{font-size:20px;color:var(--gri);max-width:720px;margin-bottom:40px}
-.akis{display:grid;grid-template-columns:repeat(5,1fr);gap:16px;list-style:none}
-.akis li{background:var(--beyaz);border-radius:14px;padding:20px;border-top:5px solid var(--kirmizi)}
-.akis li b{display:block;font-family:"Barlow Condensed";font-size:34px;color:var(--kirmizi);line-height:1}
-.akis li h3{font-size:19px;margin:8px 0 4px}
-.akis li p{font-size:15px;color:var(--gri);line-height:1.4}
-.akis li.yakinda{border-top-color:#9AA1A9}.akis li.yakinda b{color:#9AA1A9}
-.rozet{display:inline-block;margin-top:8px;background:var(--koyu2);color:#fff;font-size:12px;font-weight:700;padding:2px 10px;border-radius:999px;letter-spacing:1px}
-.akis li.son{background:var(--koyu);color:var(--acik)}.akis li.son p{color:var(--gri2)}.akis li.son b{color:var(--kirmizi-acik)}
-.modul{display:grid;grid-template-columns:1fr 1.35fr;gap:56px;align-items:center;padding:56px 0;border-top:1px solid var(--cizgi)}
-.modul:first-of-type{border-top:0}
-.modul.ters .metin{order:2}
-.modul h3{font-family:"Barlow Condensed";font-size:40px;line-height:1.05;margin-bottom:14px}
-.modul p{color:var(--gri);font-size:18px;margin-bottom:16px}
-.modul ul{list-style:none;display:grid;gap:8px}
-.modul li{padding-left:26px;position:relative;font-weight:500}
-.modul li:before{content:"";position:absolute;left:0;top:11px;width:14px;height:3px;background:var(--kirmizi)}
-.gorseller{display:grid;gap:14px}
-.gorseller img{border-radius:12px;border:1px solid var(--cizgi);background:#fff;box-shadow:0 10px 30px rgba(31,35,40,.08)}
-.gorseller.iki{grid-template-columns:1fr 1fr}
-.koyu{background:var(--koyu);color:var(--acik)}
-.koyu .giris,.koyu .modul p{color:var(--gri2)}
-.koyu .modul{border-top-color:#3A4149}
-.koyu .gorseller img{border-color:#3A4149}
-.koyu .modul li:before{background:var(--kirmizi-acik)}
-.ozellikler{display:grid;grid-template-columns:1.2fr 1fr;gap:48px;align-items:center}
-.kartlar{display:grid;gap:14px}
-.kart{background:var(--beyaz);color:var(--koyu);border-radius:14px;padding:20px 22px;border-left:5px solid var(--kirmizi)}
-.kart h3{font-size:21px;margin-bottom:4px}.kart p{color:var(--gri);font-size:16px}
-.telefonlar{display:flex;gap:20px;justify-content:center}
-.telefonlar img{width:45%;max-width:260px;border-radius:28px;border:6px solid var(--koyu)}
-.form-bolum{background:var(--kirmizi);color:#FFF7F5}
-.form-bolum .kap{display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:start}
-.form-bolum h2{color:#fff}
-.form-bolum p{font-size:20px;color:#FFE3E1}
-form{background:#fff;color:var(--koyu);border-radius:18px;padding:28px;display:grid;gap:14px}
-label{font-size:14px;font-weight:600;color:var(--gri);display:grid;gap:6px}
-input,textarea{font:inherit;font-size:17px;padding:12px 14px;border:1.5px solid var(--cizgi);border-radius:10px;background:var(--acik);width:100%}
-input:focus,textarea:focus{outline:2px solid var(--kirmizi);border-color:transparent}
-textarea{min-height:110px;resize:vertical}
-.iki-sutun{display:grid;grid-template-columns:1fr 1fr;gap:14px}
-.riza{display:flex;flex-direction:row;gap:10px;align-items:flex-start;font-size:14px;font-weight:500;color:var(--gri);line-height:1.45}.riza input{width:18px;height:18px;margin-top:2px;flex:none}
-.kvkk-not,.form-bolum form p.kvkk-not{font-size:14px;color:var(--gri);line-height:1.45}.kvkk-not a{color:var(--kirmizi);font-weight:600}
-footer nav{display:flex;gap:18px;flex-wrap:wrap}footer nav a{color:#C9CDD2;text-decoration:none}footer nav a:hover{color:#fff}
-#form-durum{font-weight:600;font-size:16px;min-height:22px}
-#form-durum.iyi{color:#1D7A3E}#form-durum.kotu{color:var(--kirmizi)}
-.gizli{position:absolute;left:-9999px}
-footer{background:var(--koyu);color:#8A9199;padding:36px 0;font-size:15px}
-footer .kap{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap;align-items:center}
-@media (max-width:900px){
- .ust nav a:not(.dugme){display:none}
- .kahraman{padding-top:48px;border-left-width:6px}
- .kahraman .kap,.modul,.ozellikler,.form-bolum .kap{grid-template-columns:1fr;gap:28px}
- .modul.ters .metin{order:0}
- .akis{grid-template-columns:repeat(2,1fr)}
- .bolum{padding:60px 0}
- .modul{padding:40px 0}
- .gorseller.iki,.iki-sutun{grid-template-columns:1fr}
-}
+.vitrin{background:linear-gradient(180deg,var(--gok) 0%,var(--gok2) 100%);padding-block:64px 72px;overflow:hidden}
+.vitrin .kap{display:grid;grid-template-columns:1.1fr 1fr;gap:40px;align-items:center}
+.vitrin h1{font-size:clamp(46px,6.5vw,80px);font-weight:800;color:var(--yesil-koyu);letter-spacing:-1px}
+.vitrin h1 span{color:var(--kirmizi)}
+.vitrin p{font-size:21px;color:#3D4A3A;margin:18px 0 28px;max-width:500px}
+.vitrin .dugmeler{display:flex;gap:12px;flex-wrap:wrap}
+.yigin{position:relative;height:340px}
+.yigin .kart-mini{position:absolute;width:56%;border-radius:26px;overflow:hidden;box-shadow:0 20px 40px rgba(46,42,36,.18);border:5px solid #fff}
+.yigin .kart-mini svg{width:100%;height:auto}
+.yigin .k1{left:0;top:30px;transform:rotate(-6deg)}
+.yigin .k2{right:0;top:0;transform:rotate(5deg)}
+.yigin .k3{left:24%;bottom:0;width:44%;transform:rotate(-1deg)}
 
-select{font:inherit;font-size:17px;padding:12px 14px;border:1.5px solid var(--cizgi);border-radius:10px;background:var(--acik);width:100%;color:var(--koyu)}
-select:focus{outline:2px solid var(--kirmizi);border-color:transparent}
-.dugme:focus-visible{outline:3px solid #fff;outline-offset:2px}
-@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
-.paketler{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;align-items:stretch}
-.paket{background:var(--beyaz);border:1px solid var(--cizgi);border-radius:18px;padding:30px 26px;display:flex;flex-direction:column;gap:18px;position:relative}
-.paket.one{background:var(--koyu);color:var(--acik);border-color:var(--koyu);box-shadow:0 24px 50px rgba(31,35,40,.25)}
-.paket .rozet2{position:absolute;top:-14px;left:26px;background:var(--kirmizi);color:#fff;font-size:13px;font-weight:700;letter-spacing:2px;padding:5px 12px;border-radius:999px}
-.paket h3{font-family:"Barlow Condensed",Arial,sans-serif;font-size:34px;line-height:1}
-.paket .kisi2{display:flex;align-items:baseline;gap:8px}
-.paket .kisi2 b{font-family:"Barlow Condensed",Arial,sans-serif;font-size:56px;line-height:1;color:var(--kirmizi)}
-.paket.one .kisi2 b{color:var(--kirmizi-acik)}
-.paket .kisi2 span{font-weight:600;color:var(--gri)}
-.paket.one .kisi2 span,.paket.one .aciklama2,.paket.one .kdv{color:var(--gri2)}
-.paket .aciklama2{color:var(--gri);font-size:16px;min-height:44px}
-.paket .tutar{font-family:"Barlow Condensed",Arial,sans-serif;font-size:46px;font-weight:700;line-height:1;font-variant-numeric:tabular-nums}
-.paket .kdv{font-size:14px;color:var(--gri);margin-top:6px}
-.paket .fiyat-sor{font-size:20px;font-weight:700;border-top:1px solid var(--cizgi);padding-top:16px}
-.paket.one .fiyat-sor{border-top-color:#3A4149}
-.paket .dugme{margin-top:auto;text-align:center}
-.paket:not(.one) .dugme{background:var(--koyu)}
-.paket:not(.one) .dugme:hover{background:#000}
-.dahil-liste{margin-top:32px;display:flex;flex-wrap:wrap;gap:10px;align-items:center}
-.dahil-liste b{font-size:14px;letter-spacing:2px;color:var(--kirmizi);margin-right:6px}
-.dahil-liste span{background:var(--beyaz);border:1px solid var(--cizgi);border-radius:999px;padding:6px 14px;font-size:15px;font-weight:500}
-.fiyat-not{margin-top:18px;font-size:14px;color:var(--gri)}
-@media (max-width:900px){.paketler{grid-template-columns:1fr;gap:26px}.paket .aciklama2{min-height:0}}
+.raf{display:grid;grid-template-columns:repeat(4,1fr);gap:20px}
+.oyun{background:#fff;border:2px solid var(--cizgi);border-radius:24px;overflow:hidden;display:flex;flex-direction:column;text-decoration:none;color:inherit;transition:transform .15s,box-shadow .15s}
+a.oyun:hover{transform:translateY(-4px);box-shadow:0 16px 30px rgba(46,42,36,.12)}
+.oyun .resim svg{width:100%;height:auto}
+.oyun .durum-etiket{align-self:flex-start}
+.oyun .govde{padding:20px 22px 24px;display:flex;flex-direction:column;gap:10px;flex:1}
+.oyun h3{font-size:27px}
+.oyun p{color:var(--soluk);font-size:17px;flex:1}
+.oyun .tur{font-size:14px;font-weight:700;color:var(--soluk)}
+.oyun .incele{font-family:var(--baslik);font-weight:700;font-size:18px;color:var(--kirmizi)}
+.oyun.bos{border-style:dashed;background:transparent}
+.oyun.bos .resim{background:#F6EDDF}
+
+.ilkeler{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.ilke{display:flex;gap:16px;align-items:flex-start}
+.ilke b{flex:none;width:52px;height:52px;border-radius:16px;background:var(--yesil-acik);display:grid;place-items:center;font-family:var(--baslik);font-size:26px;color:var(--yesil-koyu)}
+.ilke h3{font-size:22px;margin-bottom:4px;font-family:var(--baslik)}
+.ilke p{color:var(--soluk);font-size:16px}
+
+@media (max-width:1060px){.raf{grid-template-columns:1fr 1fr}}
+@media (max-width:860px){
+  .vitrin .kap{grid-template-columns:1fr}
+  .yigin{height:300px;max-width:440px;width:100%;margin:0 auto}
+  .ilkeler{grid-template-columns:1fr}
+}
+@media (max-width:560px){.raf{grid-template-columns:1fr}.yigin{height:250px}}
 </style>
 </head>
 <body>
+
 <header class="ust">
  <div class="kap">
-  <a class="marka" href="#"><img class="i" src="melta-isaret-acik.png" alt=""><img class="y" src="melta-yazi-acik.png" alt="MELTA"></a>
+  <a class="logo" href="index.html">
+   <svg viewBox="0 0 64 64" aria-hidden="true"><rect width="64" height="64" rx="16" fill="#C2462E"/><path d="M16 46V20l16 14 16-14v26" fill="none" stroke="#fff" stroke-width="7" stroke-linejoin="round"/></svg>
+   MELTA <small>Oyunları</small>
+  </a>
   <nav>
-   <a href="#akis">Nasıl çalışır</a>
-   <a href="#moduller">Modüller</a>
-   <a href="#erisim">Erişim</a>
-   <a href="#paketler">Paketler</a>
-   <a class="dugme" href="#tanitim">Tanıtım iste</a>
+   <a href="#oyunlar">Oyunlar</a>
+   <a href="#hakkimizda">Hakkımızda</a>
+   <a href="gizlilik.html">Gizlilik</a>
+   <a class="dugme" href="#haber">Haber ver</a>
   </nav>
  </div>
 </header>
 
-<section class="kahraman">
- <div class="kap">
-  <div style="padding-bottom:80px">
-   <h1>Prefabrik betonun tek programı</h1>
-   <p class="alt">Projeden statik hesaba, müşteriden cariye, üretimden sevkiyata: bütün iş tek ekranda.</p>
-   <a class="dugme" href="#tanitim">Tanıtım talep et</a>
-   <div class="etiketler"><span>Mühendislik</span><span>Üretim</span><span>Finans</span><span>Raporlama</span></div>
-  </div>
-  <div class="gorsel"><img src="planlama.jpg" alt="MELTA üretim planlama ekranı"></div>
- </div>
-</section>
-
-<section class="bolum" id="akis">
- <div class="kap">
-  <p class="ust-baslik">Uçtan uca</p>
-  <h2>Projeden sevkiyata, kopmayan tek zincir</h2>
-  <p class="giris">Her adım bir sonrakini besler. Veri bir kez girilir; plan, stok, cari ve raporlar kendiliğinden güncellenir.</p>
-  <ol class="akis">
-   <li><b>01</b><h3>Proje tasarımı</h3><p>3D yapı modeli, akslar, kolon, kiriş, makas</p></li>
-   <li><b>02</b><h3>Statik proje</h3><p>Hesap raporu ve uygulama projesi</p></li>
-   <li class="yakinda"><b>03</b><h3>Fiyat teklifi</h3><p>Tasarlanan projeden metraj ve teklif</p><span class="rozet">YAKINDA</span></li>
-   <li><b>04</b><h3>Müşteri kaydı</h3><p>Anlaşmadan sonra müşteri bazlı sipariş</p></li>
-   <li><b>05</b><h3>Cari hesap</h3><p>Fatura, tahsilat, kasa, banka, çek</p></li>
-   <li><b>06</b><h3>Üretim planı</h3><p>Hangi eleman ne zaman biter</p></li>
-   <li><b>07</b><h3>Üretim ve stok</h3><p>Müşteri bazlı üretim, depo takibi</p></li>
-   <li><b>08</b><h3>Sevkiyat</h3><p>İrsaliye, şantiyeye teslim</p></li>
-   <li><b>09</b><h3>Personel</h3><p>Puantaj ve işçilik maliyeti</p></li>
-   <li class="son"><b>10</b><h3>Raporlar</h3><p>Günlük rapor, malzeme, iş özeti</p></li>
-  </ol>
- </div>
-</section>
-
-<section class="bolum koyu" id="moduller">
- <div class="kap">
-  <p class="ust-baslik">Modüller</p>
-  <h2>İşin her parçası için bir ekran</h2>
-
-  <div class="modul">
-   <div class="metin">
-    <p class="ust-baslik">Mühendislik</p>
-    <h3>Yapıyı çizin, hesabı program yapsın</h3>
-    <p>Aksları girin; kolon, oluk, makas ve aşıklar 3D modelde anında oluşur.</p>
-    <ul><li>Statik hesap raporu, tek tıkla PDF</li><li>Kar, çatı ve deprem yükleri</li><li>TS 500 · TBDY 2018 · TS 498</li><li>Uygulama projesine temel</li></ul>
-   </div>
-   <div class="gorseller"><img src="muh-3d.jpg" alt="3D yapı modeli" loading="lazy"><img src="hesap-raporu.jpg" alt="Statik hesap raporu" loading="lazy"></div>
-  </div>
- </div>
-</section>
-
-<section class="bolum">
- <div class="kap">
-  <div class="modul ters">
-   <div class="metin">
-    <p class="ust-baslik">Müşteri ve cari</p>
-    <h3>Her müşteri kendi dosyasıyla</h3>
-    <p>Anlaşma imzalandığı an müşteri kaydı ve cari hesabı açılır; siparişler, ödemeler ve bakiye tek yerde.</p>
-    <ul><li>Müşteri bazlı eleman siparişleri</li><li>Satış faturası, hakediş, tahsilat</li><li>Kasa, banka, çek ve senet</li><li>Tedarikçi borçları ve net bakiye</li></ul>
-   </div>
-   <div class="gorseller iki"><img src="cari-kart.jpg" alt="Cari hesaplar" loading="lazy"><img src="cari-hareket.jpg" alt="Cari hareketleri" loading="lazy"></div>
-  </div>
-
-  <div class="modul">
-   <div class="metin">
-    <p class="ust-baslik">Üretim planlama</p>
-    <h3>İş ne zaman biter, bir bakışta görün</h3>
-    <p>Müşteri bazlı siparişler günlere dağılır; kalan adet ve bitiş tarihi kendiliğinden hesaplanır.</p>
-    <ul><li>Excel gibi tablo: Ctrl + yön tuşları</li><li>Toplu seçim, silme, geri alma</li><li>Müşteri ve eleman filtreleri</li><li>Girilen üretim stoğa düşer</li></ul>
-   </div>
-   <div class="gorseller"><img src="planlama.jpg" alt="Üretim planlama" loading="lazy"></div>
-  </div>
-
-  <div class="modul ters">
-   <div class="metin">
-    <p class="ust-baslik">Stok ve sevkiyat</p>
-    <h3>Sahadaki her eleman kayıtlı</h3>
-    <p>Üretilen eleman stoğa girer, araca yüklenince düşer; irsaliye otomatik hazırlanır.</p>
-    <ul><li>Müşteri bazlı stok ve kalan adet</li><li>Müşteri bazlı sevkiyat geçmişi</li><li>Yazdırılabilir sevk irsaliyesi</li><li>Depo malzemesinde eksik uyarısı</li></ul>
-   </div>
-   <div class="gorseller"><img src="sevkiyat.jpg" alt="Sevkiyat" loading="lazy"><div class="gorseller iki"><img src="stok.jpg" alt="Stok takibi" loading="lazy"><img src="irsaliye.jpg" alt="Sevk irsaliyesi" loading="lazy"></div></div>
-  </div>
- </div>
-</section>
-
-<section class="bolum koyu">
- <div class="kap">
-  <div class="modul">
-   <div class="metin">
-    <p class="ust-baslik">Günlük üretim raporu</p>
-    <h3>Gün sonu raporu tek tıkla çıktı</h3>
-    <p>Gün içinde girilen üretim, firmanızın logosu ve antetiyle imzaya hazır rapora dönüşür.</p>
-    <ul><li>Sipariş yeri, eleman, ölçü, adet</li><li>Günlük ağırlık (kg) ve beton (m³)</li><li>Kişi başı tonaj, personel maliyeti</li><li>Kalite, üretim şefi, müdür imzası</li></ul>
-   </div>
-   <div class="gorseller"><img src="gunluk-ust.jpg" alt="Günlük üretim raporu" loading="lazy"><img src="gunluk-alt.jpg" alt="Günlük rapor özeti" loading="lazy"></div>
-  </div>
- </div>
-</section>
-
-<section class="bolum">
- <div class="kap">
-  <div class="modul ters">
-   <div class="metin">
-    <p class="ust-baslik">Personel ve puantaj</p>
-    <h3>Puantajı tutun, işçilik maliyeti hazır</h3>
-    <p>Her sabah kim geldi, kim izinli işaretlenir; günlük ve aylık işçilik maliyeti kendiliğinden çıkar.</p>
-    <ul><li>Geldi, izin, rapor, dış görev</li><li>Kıdem ve yıllık izin hesabı</li><li>Aylık bordro, sigorta, toplam maliyet</li><li>Üretim ve montaj ayrı ayrı</li></ul>
-   </div>
-   <div class="gorseller"><img src="puantaj.jpg" alt="Günlük puantaj" loading="lazy"><img src="bordro.jpg" alt="Aylık bordro" loading="lazy"></div>
-  </div>
-
-  <div class="modul">
-   <div class="metin">
-    <p class="ust-baslik">Malzeme raporu</p>
-    <h3>Ne kadar beton, demir, para?</h3>
-    <p>Üretilen bütün elemanların malzemesi günlük, aylık veya yıllık; ister toplam, ister müşteri bazlı.</p>
-    <ul><li>Eleman adedi ve ağırlığı</li><li>Beton m³, demir, halat, çelik hasır, plaka</li><li>Malzeme ve işçilik maliyeti (₺)</li></ul>
-   </div>
-   <div class="gorseller"><img src="malzeme.jpg" alt="Malzeme raporu" loading="lazy"></div>
-  </div>
-
-  <div class="modul ters">
-   <div class="metin">
-    <p class="ust-baslik">İş özeti</p>
-    <h3>Bir yılın bütün işi, tek sayfada</h3>
-    <p>Yılı seçin: kaç iş alındı, kaç ton eleman üretildi, kaç m³ beton ve ne kadar demir gitti.</p>
-    <ul><li>Müşteri bazlı iş ve ilerleme</li><li>Sipariş, üretilen, kalan malzeme</li><li>Excel'e aktarma ve yazdırma</li><li>Anasayfada günlük durum paneli</li></ul>
-   </div>
-   <div class="gorseller"><img src="is-ozeti.jpg" alt="İş özeti" loading="lazy"><img src="anasayfa.jpg" alt="Anasayfa paneli" loading="lazy"></div>
-  </div>
- </div>
-</section>
-
-<section class="bolum koyu" id="erisim">
- <div class="kap ozellikler">
-  <div>
-   <p class="ust-baslik">Her yerden, güvenle</p>
-   <h2>Ofiste, sahada, cebinizde</h2>
-   <div class="kartlar" style="margin-top:24px">
-    <div class="kart"><h3>Telefon, tablet, bilgisayar</h3><p>Uygulama gibi kurulur; ayrı program yüklemeden tarayıcıdan açılır.</p></div>
-    <div class="kart"><h3>Göreve göre yetki</h3><p>Kalite kontrol, sevkiyat, muhasebe: herkes yalnız kendi ekranını görür.</p></div>
-    <div class="kart"><h3>Veriler firmanızda</h3><p>Kendi sunucunuzda çalışır; her gün otomatik yedek alınır.</p></div>
-   </div>
-  </div>
-  <div class="telefonlar"><img src="tel1.jpg" alt="Telefonda MELTA" loading="lazy"><img src="tel2.jpg" alt="Telefonda MELTA" loading="lazy"></div>
- </div>
-</section>
-
-
-<section class="bolum" id="paketler">
- <div class="kap">
-  <p class="ust-baslik">Yıllık lisans paketleri</p>
-  <h2>Firmanıza uygun paketi seçin</h2>
-  <p class="giris">Bütün paketlerde programın tüm bölümleri var. Paketler yalnızca kullanıcı sayısında ayrılır; ekibiniz büyüdüğünde üst pakete geçebilirsiniz.</p>
-  <div class="paketler">
-   <div class="paket">
-    <h3>Başlangıç</h3>
-    <div class="kisi2"><b>2</b><span>kullanıcı</span></div>
-    <p class="aciklama2">Yönetici ve bir kullanıcı</p>
-    <p class="fiyat-sor">Fiyat için bize ulaşın</p>
-    <a class="dugme" href="#tanitim" data-paket="Başlangıç (2 kullanıcı)">Bu paketle ilgileniyorum</a>
-   </div>
-   <div class="paket one">
-    <span class="rozet2">ÖNERİLEN</span>
-    <h3>Profesyonel</h3>
-    <div class="kisi2"><b>10</b><span>kullanıcı</span></div>
-    <p class="aciklama2">Üretim, sevkiyat ve muhasebe ekibi</p>
-    <p class="fiyat-sor">Fiyat için bize ulaşın</p>
-    <a class="dugme" href="#tanitim" data-paket="Profesyonel (10 kullanıcı)">Bu paketle ilgileniyorum</a>
-   </div>
-   <div class="paket">
-    <h3>Kurumsal</h3>
-    <div class="kisi2"><b>30</b><span>kullanıcı</span></div>
-    <p class="aciklama2">Birden çok ekip ve vardiya</p>
-    <p class="fiyat-sor">Fiyat için bize ulaşın</p>
-    <a class="dugme" href="#tanitim" data-paket="Kurumsal (30 kullanıcı)">Bu paketle ilgileniyorum</a>
-   </div>
-  </div>
-  <div class="dahil-liste"><b>TÜM PAKETLERDE</b><span>Mühendislik ve 3D model</span><span>Statik hesap raporu</span><span>Müşteri ve cari</span><span>Kasa ve banka</span><span>Üretim planlama</span><span>Stok ve sevkiyat</span><span>Günlük üretim raporu</span><span>Puantaj ve işçilik maliyeti</span><span>Malzeme raporu</span><span>İş özeti</span><span>Telefon ve tablet</span></div>
-  <p class="fiyat-not">Paketler yıllık lisans olarak sunulur. İlgilendiğiniz paketi seçip formu doldurun; fiyat ve detaylarla size dönüş yapalım.</p>
- </div>
-</section>
-
-<section class="bolum form-bolum" id="tanitim">
+<section class="vitrin">
  <div class="kap">
   <div>
-   <p class="ust-baslik" style="color:#FFD9D6">Tanıtım</p>
-   <h2>Fabrikanızı tek ekrandan yönetin.</h2>
-   <p>Programı kendi verinizle, yerinde gösterelim. Formu doldurun, size dönüş yapalım.</p>
+   <h1>Küçük dünyalar, <span>uzun keyifler.</span></h1>
+   <p>MELTA'da sakin, tatlı ve uzun soluklu mobil oyunlar yapıyoruz. Oyunlarımız çok yakında Google Play ve App Store'da.</p>
+   <div class="dugmeler">
+    <a class="dugme" href="#oyunlar">Oyunlarımız</a>
+    <a class="dugme acik" href="#haber">Çıkınca haber ver</a>
+   </div>
   </div>
-  <form id="tanitim-formu" action="https://formspree.io/f/xppqrdaz" method="POST" novalidate>
-   <div class="iki-sutun">
-    <label for="f-ad">Ad soyad<input id="f-ad" name="ad" required autocomplete="name"></label>
-    <label for="f-firma">Firma<input id="f-firma" name="firma" required autocomplete="organization"></label>
+  <div class="yigin" aria-hidden="true">
+   <div class="kart-mini k1"><svg viewBox="0 0 320 200"><rect width="320" height="200" fill="#CFEAF6"/><circle cx="270" cy="44" r="22" fill="#F6C445"/><path d="M0 130 Q90 95 170 120 T320 110 V200 H0z" fill="#8CC56C"/><path d="M0 160 Q120 130 220 150 T320 145 V200 H0z" fill="#5FA347"/><g transform="translate(180 72)"><rect x="6" y="38" width="90" height="62" fill="#C2462E"/><path d="M0 42 51 6l51 36z" fill="#8E2F1D"/><rect x="34" y="60" width="34" height="40" fill="#FFF4DC"/></g><g transform="translate(26 150) skewX(-20)"><rect width="110" height="40" rx="6" fill="#A9733F"/><g fill="#F2C94C"><circle cx="18" cy="12" r="5"/><circle cx="44" cy="12" r="5"/><circle cx="70" cy="12" r="5"/><circle cx="96" cy="12" r="5"/></g><g fill="#6BB04F"><circle cx="18" cy="28" r="6"/><circle cx="44" cy="28" r="6"/><circle cx="70" cy="28" r="6"/><circle cx="96" cy="28" r="6"/></g></g></svg></div>
+   <div class="kart-mini k2"><svg viewBox="0 0 320 200"><rect width="320" height="200" fill="#FDE7C8"/><rect y="150" width="320" height="50" fill="#D9B48A"/><g transform="translate(60 40)"><rect x="0" y="40" width="200" height="110" fill="#fff"/><path d="M-10 40h220l-14-34H4z" fill="#E8892B"/><g fill="#fff"><path d="M10 40l10-34h20L30 40z"/><path d="M50 40l10-34h20L70 40z"/><path d="M90 40l10-34h20l-10 34z"/><path d="M130 40l10-34h20l-10 34z"/><path d="M170 40l10-34h16l-6 34z"/></g><rect x="20" y="62" width="90" height="70" rx="4" fill="#CFEAF6"/><g><rect x="28" y="72" width="16" height="22" rx="3" fill="#C2462E"/><rect x="48" y="76" width="16" height="18" rx="3" fill="#5FA347"/><rect x="68" y="70" width="16" height="24" rx="3" fill="#F6C445"/><rect x="88" y="74" width="14" height="20" rx="3" fill="#2F6B9A"/><rect x="28" y="102" width="74" height="4" fill="#8A5A36"/><circle cx="36" cy="118" r="7" fill="#E8892B"/><circle cx="54" cy="118" r="7" fill="#C2462E"/><circle cx="72" cy="118" r="7" fill="#5FA347"/></g><rect x="128" y="70" width="52" height="80" rx="4" fill="#8A5A36"/><circle cx="170" cy="112" r="4" fill="#F6C445"/></g></svg></div>
+   <div class="kart-mini k3"><svg viewBox="0 0 320 200" aria-hidden="true"><rect width="320" height="200" fill="#DCE7F0"/><rect y="150" width="320" height="50" fill="#9AA4AE"/><path d="M0 172h320" stroke="#F6C445" stroke-width="4" stroke-dasharray="16 12"/><g transform="translate(14 62)"><path d="M0 30 55 4l55 26v58H0z" fill="#2F6B9A"/><rect x="22" y="44" width="66" height="44" fill="#24557C"/><g stroke="#3E7EB0" stroke-width="3"><path d="M22 52h66M22 60h66M22 68h66M22 76h66"/></g><rect x="30" y="8" width="50" height="12" rx="3" fill="#fff"/></g><g transform="translate(196 62)"><path d="M0 30 55 4l55 26v58H0z" fill="#C2462E"/><rect x="22" y="44" width="66" height="44" fill="#8E2F1D"/><g stroke="#D45A3E" stroke-width="3"><path d="M22 52h66M22 60h66M22 68h66M22 76h66"/></g><rect x="30" y="8" width="50" height="12" rx="3" fill="#fff"/></g><g><rect x="128" y="132" width="26" height="22" fill="#C9965E"/><rect x="156" y="132" width="26" height="22" fill="#B98450"/><rect x="142" y="110" width="26" height="22" fill="#D9A86C"/><path d="M128 143h26M156 143h26M142 121h26" stroke="#8A5A36" stroke-width="2"/></g><circle cx="160" cy="76" r="24" fill="#F6C445" stroke="#fff" stroke-width="4"/><text x="160" y="85" text-anchor="middle" font-family="Baloo 2, sans-serif" font-size="24" font-weight="800" fill="#2E2A24">VS</text></svg></div>
+  </div>
+ </div>
+</section>
+
+<section class="bolum" id="oyunlar">
+ <div class="kap">
+  <p class="ust-yazi">Oyunlarımız</p>
+  <h2>Raflarımızda neler var?</h2>
+  <p class="giris">Her oyunun kendi sayfası var. Hepsi çok yakında telefonunda.</p>
+  <div class="raf">
+   <a class="oyun" href="dedemin-ciftligi.html">
+    <div class="resim"><svg viewBox="0 0 320 200" aria-hidden="true"><rect width="320" height="200" fill="#CFEAF6"/><circle cx="270" cy="44" r="22" fill="#F6C445"/><path d="M0 130 Q90 95 170 120 T320 110 V200 H0z" fill="#8CC56C"/><path d="M0 160 Q120 130 220 150 T320 145 V200 H0z" fill="#5FA347"/><g transform="translate(180 72)"><rect x="6" y="38" width="90" height="62" fill="#C2462E"/><path d="M0 42 51 6l51 36z" fill="#8E2F1D"/><rect x="34" y="60" width="34" height="40" fill="#FFF4DC"/><path d="M34 60l34 40M68 60l-34 40" stroke="#C2462E" stroke-width="4"/></g><g transform="translate(26 150) skewX(-20)"><rect width="110" height="40" rx="6" fill="#A9733F"/><g fill="#F2C94C"><circle cx="18" cy="12" r="5"/><circle cx="44" cy="12" r="5"/><circle cx="70" cy="12" r="5"/><circle cx="96" cy="12" r="5"/></g><g fill="#6BB04F"><circle cx="18" cy="28" r="6"/><circle cx="44" cy="28" r="6"/><circle cx="70" cy="28" r="6"/><circle cx="96" cy="28" r="6"/></g></g><g transform="translate(140 160)"><ellipse cx="12" cy="12" rx="12" ry="10" fill="#fff"/><circle cx="22" cy="5" r="6" fill="#fff"/><path d="M27 5l5 2-5 2z" fill="#F2A23A"/></g></svg></div>
+    <div class="govde">
+     <span class="durum-etiket yakinda">Yakında</span>
+     <h3>Dedemin Çiftliği</h3>
+     <span class="tur">Çiftlik · Simülasyon</span>
+     <p>Hasan Dede çiftliğini sana emanet etti. Tarlanı ek, hayvanlarına bak, ürünlerini pazarda sat.</p>
+     <span class="incele">Oyunu incele →</span>
+    </div>
+   </a>
+   <a class="oyun" href="super-market-patronu.html">
+    <div class="resim"><svg viewBox="0 0 320 200" aria-hidden="true"><rect width="320" height="200" fill="#FDE7C8"/><rect y="150" width="320" height="50" fill="#D9B48A"/><g transform="translate(60 40)"><rect x="0" y="40" width="200" height="110" fill="#fff"/><path d="M-10 40h220l-14-34H4z" fill="#E8892B"/><g fill="#fff"><path d="M10 40l10-34h20L30 40z"/><path d="M50 40l10-34h20L70 40z"/><path d="M90 40l10-34h20l-10 34z"/><path d="M130 40l10-34h20l-10 34z"/><path d="M170 40l10-34h16l-6 34z"/></g><rect x="20" y="62" width="90" height="70" rx="4" fill="#CFEAF6"/><rect x="28" y="72" width="16" height="22" rx="3" fill="#C2462E"/><rect x="48" y="76" width="16" height="18" rx="3" fill="#5FA347"/><rect x="68" y="70" width="16" height="24" rx="3" fill="#F6C445"/><rect x="88" y="74" width="14" height="20" rx="3" fill="#2F6B9A"/><rect x="28" y="102" width="74" height="4" fill="#8A5A36"/><circle cx="36" cy="118" r="7" fill="#E8892B"/><circle cx="54" cy="118" r="7" fill="#C2462E"/><circle cx="72" cy="118" r="7" fill="#5FA347"/><rect x="128" y="70" width="52" height="80" rx="4" fill="#8A5A36"/><circle cx="170" cy="112" r="4" fill="#F6C445"/></g></svg></div>
+    <div class="govde">
+     <span class="durum-etiket yakinda">Yakında</span>
+     <h3>Süper Market Patronu</h3>
+     <span class="tur">Market · Simülatör</span>
+     <p>Mahallenin bakkalını devral. Rafları diz, kasada para üstünü ver, fiyatları sen belirle; bakkalı süpermarkete dönüştür.</p>
+     <span class="incele">Oyunu incele →</span>
+    </div>
+   </a>
+   <a class="oyun" href="depo-duellosu.html">
+    <div class="resim"><svg viewBox="0 0 320 200" aria-hidden="true"><rect width="320" height="200" fill="#DCE7F0"/><rect y="150" width="320" height="50" fill="#9AA4AE"/><path d="M0 172h320" stroke="#F6C445" stroke-width="4" stroke-dasharray="16 12"/><g transform="translate(14 62)"><path d="M0 30 55 4l55 26v58H0z" fill="#2F6B9A"/><rect x="22" y="44" width="66" height="44" fill="#24557C"/><g stroke="#3E7EB0" stroke-width="3"><path d="M22 52h66M22 60h66M22 68h66M22 76h66"/></g><rect x="30" y="8" width="50" height="12" rx="3" fill="#fff"/></g><g transform="translate(196 62)"><path d="M0 30 55 4l55 26v58H0z" fill="#C2462E"/><rect x="22" y="44" width="66" height="44" fill="#8E2F1D"/><g stroke="#D45A3E" stroke-width="3"><path d="M22 52h66M22 60h66M22 68h66M22 76h66"/></g><rect x="30" y="8" width="50" height="12" rx="3" fill="#fff"/></g><g><rect x="128" y="132" width="26" height="22" fill="#C9965E"/><rect x="156" y="132" width="26" height="22" fill="#B98450"/><rect x="142" y="110" width="26" height="22" fill="#D9A86C"/><path d="M128 143h26M156 143h26M142 121h26" stroke="#8A5A36" stroke-width="2"/></g><circle cx="160" cy="76" r="24" fill="#F6C445" stroke="#fff" stroke-width="4"/><text x="160" y="85" text-anchor="middle" font-family="Baloo 2, sans-serif" font-size="24" font-weight="800" fill="#2E2A24">VS</text></svg></div>
+    <div class="govde">
+     <span class="durum-etiket yakinda">Yakında</span>
+     <h3>Depo Düellosu</h3>
+     <span class="tur">Depo · Rekabet</span>
+     <p>İki depo, tek kazanan. Rakip depoya karşı kolileri herkesten hızlı ve düzenli yönetebilir misin?</p>
+     <span class="incele">Oyunu incele →</span>
+    </div>
+   </a>
+   <a class="oyun" href="seker-diyari.html">
+    <div class="resim"><svg viewBox="0 0 320 200" aria-hidden="true"><defs><linearGradient id="sk" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#FBD3E6"/><stop offset="1" stop-color="#E9D7FB"/></linearGradient></defs><rect width="320" height="200" fill="url(#sk)"/><g fill="#fff" opacity=".7"><circle cx="40" cy="30" r="6"/><circle cx="290" cy="40" r="4"/><circle cx="270" cy="170" r="5"/></g><rect x="70" y="20" width="180" height="160" rx="18" fill="#fff" opacity=".85"/><g transform="translate(86 34)"><circle cx="18" cy="18" r="15" fill="#E84B6A"/><circle cx="58" cy="18" r="15" fill="#F6C445"/><circle cx="98" cy="18" r="15" fill="#5FA347"/><circle cx="138" cy="18" r="15" fill="#E84B6A"/><rect x="3" y="45" width="30" height="30" rx="8" fill="#7C5CD6"/><circle cx="58" cy="60" r="15" fill="#E84B6A"/><rect x="83" y="45" width="30" height="30" rx="8" fill="#2F9BD6"/><circle cx="138" cy="60" r="15" fill="#F6C445"/><circle cx="18" cy="102" r="15" fill="#5FA347"/><rect x="43" y="87" width="30" height="30" rx="8" fill="#7C5CD6"/><circle cx="98" cy="102" r="15" fill="#E84B6A"/><rect x="123" y="87" width="30" height="30" rx="8" fill="#2F9BD6"/><g fill="#fff" opacity=".55"><circle cx="13" cy="12" r="4"/><circle cx="53" cy="12" r="4"/><circle cx="93" cy="12" r="4"/><circle cx="133" cy="12" r="4"/><circle cx="53" cy="54" r="4"/><circle cx="133" cy="54" r="4"/><circle cx="13" cy="96" r="4"/><circle cx="93" cy="96" r="4"/></g></g><g transform="translate(262 92) rotate(20)"><rect x="-3" y="10" width="6" height="56" rx="3" fill="#fff"/><circle r="22" fill="#F28AB2"/><path d="M-14 0a14 14 0 1 0 28 0a9 9 0 1 0 -18 0a4 4 0 1 0 8 0" fill="none" stroke="#fff" stroke-width="4"/></g><g transform="translate(40 140) rotate(-15)"><path d="M-26-10l10 10-10 10zM26-10l-10 10 10 10z" fill="#F6C445"/><ellipse rx="18" ry="12" fill="#E84B6A"/><path d="M-8-10q8 10 0 20M2-11q8 11 0 22" stroke="#fff" stroke-width="3" fill="none"/></g></svg></div>
+    <div class="govde">
+     <span class="durum-etiket yakinda">Yakında</span>
+     <h3>Şeker Diyarı</h3>
+     <span class="tur">Bulmaca · Eşleştirme</span>
+     <p>Rengârenk şekerleri yan yana getir, patlat, bölüm bölüm şeker diyarını keşfet.</p>
+     <span class="incele">Oyunu incele →</span>
+    </div>
+   </a>
+    </div>
+ </div>
+</section>
+
+<section class="bolum" id="hakkimizda" style="padding-top:0">
+ <div class="kap">
+  <p class="ust-yazi">Hakkımızda</p>
+  <h2>Nasıl oyunlar yapıyoruz?</h2>
+  <div class="ilkeler">
+   <div class="ilke"><b>1</b><div><h3>Sakin ve tatlı</h3><p>Acele ettirmeyen, gözü yormayan, sevimli dünyalar.</p></div></div>
+   <div class="ilke"><b>2</b><div><h3>Uzun soluklu</h3><p>İki günde biten değil, haftalarca dönüp oynanan oyunlar.</p></div></div>
+   <div class="ilke"><b>3</b><div><h3>Adil ve ücretsiz</h3><p>Oynamak ücretsiz; reklam izlemek her zaman senin seçimin.</p></div></div>
+  </div>
+ </div>
+</section>
+
+<section class="bolum haber" id="haber">
+ <div class="kap">
+  <div>
+   <p class="ust-yazi">Haber listesi</p>
+   <h2>Çıkınca ilk sen öğren</h2>
+   <p class="giris" style="margin-bottom:0">Hangi oyunlarımızla ilgilendiğini seç, e-postanı bırak. Oyun yayına girdiği gün haber verelim.</p>
+  </div>
+  <form id="haber-formu" action="https://formspree.io/f/xppqrdaz" method="POST" novalidate>
+   <label class="alan" for="f-eposta">E-posta adresin<input id="f-eposta" name="email" type="email" required autocomplete="email" placeholder="ornek@mail.com"></label>
+   <div>
+    <p class="grup-baslik">İlgilendiğin oyunlar</p>
+    <div class="secim">
+     <label><input type="checkbox" name="oyunlar" value="Dedemin Çiftliği" checked> Dedemin Çiftliği</label>
+     <label><input type="checkbox" name="oyunlar" value="Süper Market Patronu" checked> Süper Market Patronu</label>
+     <label><input type="checkbox" name="oyunlar" value="Depo Düellosu" checked> Depo Düellosu</label>
+     <label><input type="checkbox" name="oyunlar" value="Şeker Diyarı" checked> Şeker Diyarı</label>
+    </div>
    </div>
-   <div class="iki-sutun">
-    <label for="f-tel">Telefon<input id="f-tel" name="telefon" type="tel" autocomplete="tel" placeholder="05xx xxx xx xx"></label>
-    <label for="f-eposta">E-posta<input id="f-eposta" name="email" type="email" required autocomplete="email"></label>
+   <div>
+    <p class="grup-baslik">Telefonun</p>
+    <div class="secim">
+     <label><input type="radio" name="telefon" value="Android" checked> Android</label>
+     <label><input type="radio" name="telefon" value="iPhone"> iPhone</label>
+    </div>
    </div>
-   <div class="iki-sutun">
-    <label for="f-il">İl<select id="f-il" name="il"><option value="">İl seçin</option></select></label>
-    <label for="f-paket">İlgilendiğiniz paket<select id="f-paket" name="paket"><option value="">Henüz karar vermedim</option><option>Başlangıç (2 kullanıcı)</option><option>Profesyonel (10 kullanıcı)</option><option>Kurumsal (30 kullanıcı)</option></select></label>
-   </div>
-   <label for="f-not">Notunuz<textarea id="f-not" name="not" placeholder="Fabrikanız, ihtiyacınız, uygun zaman…"></textarea></label>
    <input class="gizli" type="text" name="_gotcha" tabindex="-1" autocomplete="off">
-   <input type="hidden" name="_subject" value="MELTA tanıtım talebi">
-   <p class="kvkk-not">Bilgileriniz yalnızca talebinize dönüş yapmak için kullanılır. Ayrıntılar: <a href="kvkk.html">KVKK Aydınlatma Metni</a>.</p>
-   <label class="riza" for="f-riza"><input id="f-riza" type="checkbox" name="acik_riza" value="Evet"><span>Form bilgilerimin yurt dışında bulunan form hizmeti (Formspree, ABD) aracılığıyla MELTA'ya iletilmesine açık rıza veriyorum.</span></label>
-   <button class="dugme" type="submit">Tanıtım talep et</button>
-   <p id="form-durum" role="status"></p>
+   <input type="hidden" name="_subject" value="MELTA Oyunları · haber listesi">
+   <label class="riza"><input id="f-riza" type="checkbox" name="acik_riza" value="Evet"> <span>E-posta adresimin oyunların çıkış haberini göndermek için işlenmesini ve yurt dışındaki form hizmeti (Formspree, ABD) aracılığıyla iletilmesini kabul ediyorum. <a href="gizlilik.html" target="_blank">Gizlilik Politikası</a> · 16 yaşından küçüksen formu ebeveynin doldursun.</span></label>
+   <button class="dugme" type="submit">Haber ver</button>
+   <p id="durum" role="status"></p>
+   <p class="form-not">E-postanı yalnızca oyunlarımızın çıkış haberi için kullanırız. Ayrıntılar: <a href="gizlilik.html">Gizlilik Politikası</a>.</p>
   </form>
  </div>
 </section>
 
-<footer>
+<footer class="alt">
  <div class="kap">
-  <a class="marka" href="#"><img class="i" src="melta-isaret-acik.png" alt=""><img class="y" src="melta-yazi-acik.png" alt="MELTA"></a>
-  <span>Ekran görüntülerindeki firma, müşteri, personel adları ve tutarlar örnektir.</span>
-  <nav><a href="kvkk.html">KVKK Aydınlatma Metni</a><a href="oyunlar/">MELTA Oyunları</a><a href="oyunlar/gizlilik.html">Oyun Gizlilik Politikası</a></nav>
-  <span>© <span id="yil">2026</span> MELTA</span>
+  <span>© <span id="yil">2026</span> MELTA Oyunları</span>
+  <nav>
+   <a href="dedemin-ciftligi.html">Dedemin Çiftliği</a>
+   <a href="super-market-patronu.html">Süper Market Patronu</a>
+   <a href="depo-duellosu.html">Depo Düellosu</a>
+   <a href="seker-diyari.html">Şeker Diyarı</a>
+   <a href="gizlilik.html">Gizlilik / Privacy</a>
+   <a href="kvkk.html">KVKK</a>
+   <span>Destek: <a href="mailto:satis@meltamuhendislik.com">satis@meltamuhendislik.com</a></span>
+  </nav>
  </div>
 </footer>
 
-<script>
-(function () {
-  var iller = ["Adana","Adıyaman","Afyonkarahisar","Ağrı","Aksaray","Amasya","Ankara","Antalya","Ardahan","Artvin","Aydın","Balıkesir","Bartın","Batman","Bayburt","Bilecik","Bingöl","Bitlis","Bolu","Burdur","Bursa","Çanakkale","Çankırı","Çorum","Denizli","Diyarbakır","Düzce","Edirne","Elazığ","Erzincan","Erzurum","Eskişehir","Gaziantep","Giresun","Gümüşhane","Hakkari","Hatay","Iğdır","Isparta","İstanbul","İzmir","Kahramanmaraş","Karabük","Karaman","Kars","Kastamonu","Kayseri","Kilis","Kırıkkale","Kırklareli","Kırşehir","Kocaeli","Konya","Kütahya","Malatya","Manisa","Mardin","Mersin","Muğla","Muş","Nevşehir","Niğde","Ordu","Osmaniye","Rize","Sakarya","Samsun","Şanlıurfa","Siirt","Sinop","Şırnak","Sivas","Tekirdağ","Tokat","Trabzon","Tunceli","Uşak","Van","Yalova","Yozgat","Zonguldak"];
-  var sec = document.getElementById("f-il");
-  iller.forEach(function (il) { var o = document.createElement("option"); o.textContent = il; sec.appendChild(o); });
-  document.getElementById("yil").textContent = new Date().getFullYear();
-
-  document.querySelectorAll("[data-paket]").forEach(function (a) {
-    a.addEventListener("click", function () { document.getElementById("f-paket").value = a.getAttribute("data-paket"); });
-  });
-  var form = document.getElementById("tanitim-formu");
-  var durum = document.getElementById("form-durum");
-  var dugme = form.querySelector("button");
-  form.addEventListener("submit", function (e) {
-    e.preventDefault();
-    var eksik = Array.prototype.filter.call(form.querySelectorAll("[required]"), function (el) { return !el.value.trim(); });
-    if (eksik.length) {
-      durum.className = "kotu";
-      durum.textContent = "Lütfen ad soyad, firma ve e-posta alanlarını doldurun.";
-      eksik[0].focus();
-      return;
-    }
-    var riza = document.getElementById("f-riza");
-    if (!riza.checked) {
-      durum.className = "kotu";
-      durum.textContent = "Göndermek için açık rıza kutusunu işaretleyin.";
-      riza.focus();
-      return;
-    }
-    if (form.action.indexOf("FORM_KODU") !== -1) {
-      durum.className = "kotu";
-      durum.textContent = "Form henüz bağlanmadı.";
-      return;
-    }
-    dugme.disabled = true; dugme.textContent = "Gönderiliyor…";
-    fetch(form.action, { method: "POST", body: new FormData(form), headers: { Accept: "application/json" } })
-      .then(function (r) {
-        if (!r.ok) throw new Error();
-        form.reset();
-        durum.className = "iyi";
-        durum.textContent = "Teşekkürler! Talebiniz bize ulaştı, en kısa sürede dönüş yapacağız.";
-      })
-      .catch(function () {
-        durum.className = "kotu";
-        durum.textContent = "Gönderilemedi. İnternet bağlantınızı kontrol edip tekrar deneyin.";
-      })
-      .finally(function () { dugme.disabled = false; dugme.textContent = "Tanıtım talep et"; });
-  });
-})();
-</script>
-
+<script src="form.js"></script>
 </body>
 </html>
