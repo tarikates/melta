@@ -5,23 +5,53 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Şeker Diyarı · MELTA Oyunları</title>
 <link rel="stylesheet" href="fonts.css">
-<meta name="description" content="Şeker Diyarı: rengârenk şekerleri eşleştir, patlat, bölüm bölüm şeker diyarını keşfet. Yakında Google Play ve App Store'da.">
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23E84B6A'/%3E%3Ccircle cx='32' cy='32' r='14' fill='%23fff'/%3E%3C/svg%3E">
+<meta name="description" content="Şeker Diyarı: rengârenk şekerleri eşleştir, Tarçın'la bölümleri geç, kendi pastaneni kur. Gerçek parayla satın alma yok, zorunlu reklam yok. Çok yakında Google Play'de.">
+<meta property="og:title" content="Şeker Diyarı · MELTA Oyunları">
+<meta property="og:description" content="Rengârenk şekerleri eşleştir, Tarçın'la bölümleri geç, kendi pastaneni kur. Çok yakında Google Play'de.">
+<meta property="og:image" content="https://meltamuhendislik.com/sd-kapak.jpg">
+<link rel="icon" href="sd-simge.png">
 <link rel="stylesheet" href="stil.css">
 <style>
-.geri{font-weight:700;font-size:15px;color:var(--soluk);text-decoration:none;display:inline-block;margin-bottom:14px}
-.kahraman{background:linear-gradient(180deg,#FBD3E6 0%,#F6EEFC 100%);overflow:hidden}
-.kahraman .kap{display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:center;padding-block:40px 64px}
-.kahraman h1{font-size:clamp(52px,7.5vw,88px);font-weight:800;color:#B0306A;letter-spacing:-1px;margin-top:12px}
-.kahraman h1 span{display:block;color:var(--kirmizi)}
-.kahraman p.alt{font-size:21px;color:#5A3D52;margin:18px 0 28px;max-width:460px}
-.kahraman svg{width:100%;height:auto;border-radius:24px;box-shadow:0 20px 40px rgba(46,42,36,.15)}
-.yolda{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
-.adim{background:#fff;border:2px solid var(--cizgi);border-radius:20px;padding:22px}
-.adim b{display:block;font-family:var(--baslik);font-size:22px;margin-bottom:4px}
-.adim p{color:var(--soluk);font-size:16px}
-.adim.tamam{border-color:#F3C995;background:#FFF6EA}
-@media (max-width:860px){.kahraman .kap{grid-template-columns:1fr}.yolda{grid-template-columns:1fr}}
+:root{--pembe:#E84B6A;--pembe-koyu:#A92F4C;--mor:#5B2A6E;--pembe-zemin:#FFE7F1}
+.geri{font-weight:700;font-size:15px;color:#7A4F6C;text-decoration:none;display:inline-block;margin-bottom:12px}
+.kahraman{background:linear-gradient(165deg,#FFD3E6 0%,#F6E3FF 60%,#FFF0DC 100%);overflow:hidden;position:relative}
+.kahraman:before{content:"";position:absolute;inset:0;background:radial-gradient(circle at 80% 30%,rgba(255,255,255,.7),transparent 45%);pointer-events:none}
+.kahraman .kap{position:relative;display:grid;grid-template-columns:1fr 1.1fr;gap:44px;align-items:center;padding-block:36px 72px}
+.rozetler{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:10px}
+.durum-etiket.testte{background:#FFE1EE;color:#B0306A}
+.kahraman h1{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
+.kahraman .logo-sd{width:min(400px,86%);height:auto;filter:drop-shadow(0 10px 16px rgba(120,40,90,.2))}
+.kahraman p.alt{font-size:21px;color:#5A3D52;margin:14px 0 24px;max-width:480px}
+.kahraman .dugmeler{display:flex;gap:12px;flex-wrap:wrap;align-items:center}
+.dugme.pembe{background:var(--pembe);box-shadow:0 5px 0 var(--pembe-koyu)}
+.dugme.pembe:active{box-shadow:0 2px 0 var(--pembe-koyu)}
+.play-yakinda{display:inline-flex;align-items:center;gap:10px;background:#1F1A24;color:#fff;border-radius:14px;padding:9px 16px;font-weight:700;font-size:14px;line-height:1.15}
+.play-yakinda svg{width:24px;height:24px}
+.play-yakinda b{display:block;font-family:var(--baslik);font-size:18px}
+.kapak{border-radius:28px;overflow:hidden;box-shadow:0 26px 50px rgba(80,30,70,.25);border:6px solid #fff;transform:rotate(1.5deg)}
+.kapak img{width:100%;height:auto}
+
+.ozellikler{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.ozellik{background:#fff;border:2px solid #F3D6E4;border-radius:22px;padding:22px}
+.ozellik i{display:grid;place-items:center;width:52px;height:52px;border-radius:16px;font-style:normal;font-size:26px;margin-bottom:12px}
+.ozellik h3{font-size:23px;margin-bottom:4px;color:var(--mor)}
+.ozellik p{color:var(--soluk);font-size:16px}
+
+.galeri-bolum{background:var(--pembe-zemin)}
+.galeri{display:grid;grid-template-columns:repeat(5,1fr);gap:18px}
+.galeri figure{display:grid;gap:10px;text-align:center}
+.galeri .tel{border-radius:28px;background:#2B1B33;padding:8px;box-shadow:0 18px 34px rgba(80,30,70,.2);aspect-ratio:9/16}
+.galeri .tel img{width:100%;height:100%;object-fit:cover;border-radius:21px}
+.galeri figcaption{font-weight:800;font-size:16px;color:var(--mor)}
+
+.guven{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
+.guven div{background:#fff;border-radius:20px;padding:20px;border:2px solid var(--cizgi)}
+.guven b{display:block;font-family:var(--baslik);font-size:21px;color:var(--yesil-koyu);margin-bottom:2px}
+.guven span{color:var(--soluk);font-size:15px}
+
+@media (max-width:980px){.galeri{grid-template-columns:repeat(5,62%);overflow-x:auto;scroll-snap-type:x mandatory;padding-bottom:12px;margin-inline:-20px;padding-inline:20px}.galeri figure{scroll-snap-align:center}}
+@media (max-width:860px){.kahraman .kap{grid-template-columns:1fr}.ozellikler,.guven{grid-template-columns:1fr 1fr}}
+@media (max-width:560px){.ozellikler,.guven{grid-template-columns:1fr}.galeri{grid-template-columns:repeat(5,72%)}}
 </style>
 </head>
 <body>
@@ -33,6 +63,8 @@
    MELTA <small>Oyunları</small>
   </a>
   <nav>
+   <a href="#ozellikler">Özellikler</a>
+   <a href="#galeri">Görseller</a>
    <a href="index.html#oyunlar">Tüm oyunlar</a>
    <a class="dugme" href="#haber">Haber ver</a>
   </nav>
@@ -42,22 +74,70 @@
 <section class="kahraman">
  <div class="kap">
   <div>
-   <a class="geri" href="index.html#oyunlar">← Tüm oyunlar</a><br>
-   <span class="durum-etiket yakinda">Yakında · Bulmaca oyunu</span>
-   <h1>Şeker <span>Diyarı</span></h1>
-   <p class="alt">Rengârenk şekerleri yan yana getir, patlat, bölüm bölüm şeker diyarını keşfet. Ayrıntılar çok yakında burada.</p>
-   <a class="dugme" href="#haber">Çıkınca haber ver</a>
+   <a class="geri" href="index.html#oyunlar">← Tüm oyunlar</a>
+   <div class="rozetler"><span class="durum-etiket testte">Kapalı testte</span><span class="durum-etiket yakinda">Bulmaca · Eşleştirme</span></div>
+   <h1>Şeker Diyarı</h1>
+   <img class="logo-sd" src="sd-logo.png" alt="Şeker Diyarı" width="440" height="311">
+   <p class="alt">Rengârenk şekerleri yan yana getir, patlat ve bölümleri yıldızlarla geç. Aşçı ayıcık Tarçın'la yolculuğa çık, kendi pastaneni kur!</p>
+   <div class="dugmeler">
+    <a class="dugme pembe" href="#haber">Çıkınca haber ver</a>
+    <span class="play-yakinda"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 2.5v19l10.5-9.5z" fill="#34A853"/><path d="M4 2.5l13.5 7.4-3 2.6z" fill="#4285F4"/><path d="M4 21.5l10.5-9.5 3 2.6z" fill="#EA4335"/><path d="M17.5 9.9 21 12l-3.5 2.1-3-2.6z" fill="#FBBC04"/></svg><span>Çok yakında<b>Google Play</b></span></span>
+   </div>
   </div>
-  <svg viewBox="0 0 320 200" role="img" aria-label="Rengârenk şekerlerle dolu bir oyun tahtası, lolipop ve sargılı şeker"><defs><linearGradient id="sk" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#FBD3E6"/><stop offset="1" stop-color="#E9D7FB"/></linearGradient></defs><rect width="320" height="200" fill="url(#sk)"/><g fill="#fff" opacity=".7"><circle cx="40" cy="30" r="6"/><circle cx="290" cy="40" r="4"/><circle cx="270" cy="170" r="5"/></g><rect x="70" y="20" width="180" height="160" rx="18" fill="#fff" opacity=".85"/><g transform="translate(86 34)"><circle cx="18" cy="18" r="15" fill="#E84B6A"/><circle cx="58" cy="18" r="15" fill="#F6C445"/><circle cx="98" cy="18" r="15" fill="#5FA347"/><circle cx="138" cy="18" r="15" fill="#E84B6A"/><rect x="3" y="45" width="30" height="30" rx="8" fill="#7C5CD6"/><circle cx="58" cy="60" r="15" fill="#E84B6A"/><rect x="83" y="45" width="30" height="30" rx="8" fill="#2F9BD6"/><circle cx="138" cy="60" r="15" fill="#F6C445"/><circle cx="18" cy="102" r="15" fill="#5FA347"/><rect x="43" y="87" width="30" height="30" rx="8" fill="#7C5CD6"/><circle cx="98" cy="102" r="15" fill="#E84B6A"/><rect x="123" y="87" width="30" height="30" rx="8" fill="#2F9BD6"/><g fill="#fff" opacity=".55"><circle cx="13" cy="12" r="4"/><circle cx="53" cy="12" r="4"/><circle cx="93" cy="12" r="4"/><circle cx="133" cy="12" r="4"/><circle cx="53" cy="54" r="4"/><circle cx="133" cy="54" r="4"/><circle cx="13" cy="96" r="4"/><circle cx="93" cy="96" r="4"/></g></g><g transform="translate(262 92) rotate(20)"><rect x="-3" y="10" width="6" height="56" rx="3" fill="#fff"/><circle r="22" fill="#F28AB2"/><path d="M-14 0a14 14 0 1 0 28 0a9 9 0 1 0 -18 0a4 4 0 1 0 8 0" fill="none" stroke="#fff" stroke-width="4"/></g><g transform="translate(40 140) rotate(-15)"><path d="M-26-10l10 10-10 10zM26-10l-10 10 10 10z" fill="#F6C445"/><ellipse rx="18" ry="12" fill="#E84B6A"/><path d="M-8-10q8 10 0 20M2-11q8 11 0 22" stroke="#fff" stroke-width="3" fill="none"/></g></svg>
+  <div class="kapak"><img src="sd-kapak.jpg" alt="Şeker Diyarı: aşçı şapkalı ayıcık Tarçın, lolipop ve gülen şekerler" width="1024" height="500"></div>
+ </div>
+</section>
+
+<section class="bolum" id="ozellikler">
+ <div class="kap">
+  <p class="ust-yazi">Neler var?</p>
+  <h2>Tatlı bir macera seni bekliyor</h2>
+  <p class="giris">Kolay öğrenilir, bırakması zor. Her bölümde yeni hedefler, her gün yeni hediyeler.</p>
+  <div class="ozellikler">
+   <div class="ozellik"><i style="background:#FFE1EE">🍬</i><h3>Eşleştir ve patlat</h3><p>Aynı renkten üç şekeri yan yana getir. Dört ya da beş eşleştirmeyle çizgili şeker, paket şeker ve renk bombası kazan.</p></div>
+   <div class="ozellik"><i style="background:#FFF0D1">🐻</i><h3>Tarçın seninle</h3><p>Sevimli aşçı ayıcık Tarçın her bölümde yanında. Haritada ilerle, yeni bölgeler aç.</p></div>
+   <div class="ozellik"><i style="background:#E8F6DD">🧁</i><h3>Pastaneni kur</h3><p>Kazandığın yıldızlarla pastaneni adım adım boya, süsle ve büyüt.</p></div>
+   <div class="ozellik"><i style="background:#E7EEFF">🎡</i><h3>Her gün hediye</h3><p>Günlük ödül, şans çarkı ve seri hediyeleri. Her gün oyuna girmek için bir sebep.</p></div>
+   <div class="ozellik"><i style="background:#F3E6FF">❄️</i><h3>Farklı hedefler</h3><p>Puan topla, belirli renkleri patlat, buzları kır, kutuları aç. Her bölüm başka bir bulmaca.</p></div>
+   <div class="ozellik"><i style="background:#FFE9DC">✨</i><h3>Tatlı Final</h3><p>Bölümü bitirince kalan hamlelerin güçlendiriciye dönüşür, ekranda büyük şölen başlar.</p></div>
+  </div>
+ </div>
+</section>
+
+<section class="bolum galeri-bolum" id="galeri">
+ <div class="kap">
+  <p class="ust-yazi">Oyundan görüntüler</p>
+  <h2>Şeker Diyarı'na bir göz at</h2>
+  <p class="giris">Görüntüler oyunun test sürümünden alındı.</p>
+  <div class="galeri">
+   <figure><div class="tel"><img src="sd-ekran-1.jpg" alt="Ana sayfa: Tarçın, günlük ödül, şans çarkı ve bölüm düğmesi" loading="lazy" width="540" height="960"></div><figcaption>Ana sayfa</figcaption></figure>
+   <figure><div class="tel"><img src="sd-ekran-2.jpg" alt="Oyun tahtası: gülen renkli şekerler" loading="lazy" width="540" height="960"></div><figcaption>Oyun tahtası</figcaption></figure>
+   <figure><div class="tel"><img src="sd-ekran-3.jpg" alt="Bölüm geçildi ekranı: üç yıldız ve ödüller" loading="lazy" width="540" height="960"></div><figcaption>Bölüm geçildi</figcaption></figure>
+   <figure><div class="tel"><img src="sd-ekran-4.jpg" alt="Şans çarkı: günde bir bedava çevirme" loading="lazy" width="540" height="960"></div><figcaption>Şans çarkı</figcaption></figure>
+   <figure><div class="tel"><img src="sd-ekran-5.jpg" alt="Pastane: tabelayı as görevi" loading="lazy" width="540" height="960"></div><figcaption>Pastaneni kur</figcaption></figure>
+  </div>
+ </div>
+</section>
+
+<section class="bolum">
+ <div class="kap">
+  <p class="ust-yazi">Gönül rahatlığıyla</p>
+  <h2>Aile dostu bir oyun</h2>
+  <div class="guven">
+   <div><b>Satın alma yok</b><span>Gerçek parayla hiçbir şey satılmaz. Elmaslar oynayarak kazanılır.</span></div>
+   <div><b>Zorunlu reklam yok</b><span>Reklamı yalnızca sen istersen, ödül için izlersin.</span></div>
+   <div><b>İnternetsiz oynanır</b><span>Yolda, uçakta, her yerde. İlerlemen cihazında saklanır.</span></div>
+   <div><b>Hesap gerekmez</b><span>Ad, e-posta, konum sorulmaz. <a href="gizlilik.html">Gizlilik Politikası</a></span></div>
+  </div>
  </div>
 </section>
 
 <section class="bolum haber" id="haber">
  <div class="kap">
   <div>
-   <p class="ust-yazi">Yakında</p>
+   <p class="ust-yazi">Çok yakında</p>
    <h2>Çıkınca ilk sen öğren</h2>
-   <p class="giris" style="margin-bottom:0">E-postanı bırak, Şeker Diyarı yayına girdiği gün haber verelim.</p>
+   <p class="giris" style="margin-bottom:0">E-postanı bırak, Şeker Diyarı Google Play'de yayına girdiği gün haber verelim.</p>
   </div>
   <form id="haber-formu" action="https://formspree.io/f/xppqrdaz" method="POST" novalidate>
    <label class="alan" for="f-eposta">E-posta adresin<input id="f-eposta" name="email" type="email" required autocomplete="email" placeholder="ornek@mail.com"></label>
